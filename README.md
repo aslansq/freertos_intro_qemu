@@ -10,5 +10,5 @@ FreeRTOS Qemu Demos in VSCode
 ## Building and Running
 1. Update submodules recursively. ```git submodule update --init --recursive```
 2. Open VSCode to this folder.
-3. After prerequisites satisfied, run ```configure.sh```.```Configure.sh``` checks prerequisities and creates VSCode configuration.
+3. After prerequisites satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities and creates VSCode configuration.
 4. On the VSCode left side panel, select the “Run and Debug” button. Then select “Launch QEMU ```demo of your choice```” from the dropdown on the top right and press the play button. This will build, run, and attach a debugger to the demo program.
