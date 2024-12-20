@@ -1,16 +1,6 @@
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
-
-demos="0_original"
-
-echoerr() { echo "$@" 1>&2; }
-
-ungracefulExit()
-{
-    echoerr
-    echoerr ERROR!!
-    exit 1
-}
+source "${thisDirPath}/misc/shell/util.sh"
 
 out=$(qemu-system-arm --help 2>&1 1>/dev/null)
 if [ $? != 0 ]

@@ -1,4 +1,4 @@
-set(kernel_dir ${freertos_root}/Source)
+set(kernel_dir "${freertos_source_root}")
 
 set(kernel_inc
     ${kernel_dir}/include
