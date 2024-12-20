@@ -70,5 +70,14 @@ else
     echo found cmake
 fi
 
+files=$(find ${thisDirPath}/misc/FreeRTOS -type f)
+if [ -z "${files}" ]
+then
+    echoerr FreeRTOS files not found. update submodules
+    ungracefulExit
+else
+    echo found FreeRTOS files
+fi
+
 echo
 echo SUCCESS!!
