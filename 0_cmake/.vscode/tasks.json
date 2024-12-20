@@ -3,13 +3,13 @@
     // for the documentation about the tasks.json format
     "version": "2.0.0",
     "tasks": [
-        {
-            "label": "Build 0_original",
+          {
+            "label": "CleanBuild",
             "type": "shell",
-            "command": "make --directory=${workspaceFolder}/build/gcc",
+            "command": "cd ${workspaceFolder}; rm -rf build; mkdir -p build; cd build; cmake ..; make -j all",
             "problemMatcher": {
               "base": "$gcc",
-              "fileLocation": ["relative", "${workspaceFolder}/build/gcc"]
+              "fileLocation": ["relative", "${workspaceFolder}/build"]
             },
             "group": {
                 "kind": "build",
@@ -17,10 +17,10 @@
             }
           },
           {
-            "label": "Run QEMU 0_original",
+            "label": "Run QEMU",
             "type": "shell",
-            "command": "echo 'QEMU 0_original started'; qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel ${workspaceFolder}/build/gcc/output/RTOSDemo.out -monitor none -nographic -serial stdio -s -S",
-            "dependsOn": ["Build 0_original"],
+            "command": "echo QEMU started; qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel ${workspaceFolder}/build/demo -monitor none -nographic -serial stdio -s -S",
+            "dependsOn": ["CleanBuild"],
             "isBackground": true,
             "problemMatcher": [
               {
@@ -35,7 +35,7 @@
                 "background": {
                   "activeOnStart": true,
                   "beginsPattern": ".",
-                  "endsPattern": "QEMU 0_original started",
+                  "endsPattern": "QEMU started",
                 }
               }
             ]
