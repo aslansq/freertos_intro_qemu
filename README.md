@@ -7,9 +7,15 @@ FreeRTOS Qemu Demos in VSCode
 * Create environment variable GCC_ARM_NONE_EABI_BIN_PATH which points to binaries.
 * Install GNU make utility.
 * Install CMake utility.
+* Update submodules recursively. ```git submodule update --init --recursive```
+* Give execute permission files under ```misc\shell```. ```chmod +x misc\shell\*.sh```
+* After all satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities.
 
-## Building and Running
-1. Update submodules recursively. ```git submodule update --init --recursive```
-2. Open VSCode to this folder.
-3. After prerequisites satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities.
-4. On the VSCode left side panel, select the “Run and Debug” button. Then select “Launch QEMU ```demo of your choice```” from the dropdown on the top right and press the play button. This will build, run, and attach a debugger to the demo program.
+## Running with VSCode
+1. Open VSCode to this folder.
+2. On the VSCode left side panel, select the “Run and Debug” button.
+3. Then select “Launch QEMU ```demo of your choice```” from the dropdown on the top right and press the play button.
+4. This will build, run, and attach a debugger to the demo program.
+
+## Manual Build and Run QEMU
+Use the scripts under ```misc\shell```

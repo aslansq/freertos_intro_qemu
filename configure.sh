@@ -79,5 +79,17 @@ else
     echo found FreeRTOS files
 fi
 
+files=$(find "${thisDirPath}/misc/shell" -type f)
+for file in ${files}
+do
+    if [ ! -x "${file}" ]
+    then
+        echoerr "${file} does not have execute permission"
+        ungracefulExit
+    else
+        echo found execute permission for ${file}
+    fi
+done
+
 echo
 echo SUCCESS!!

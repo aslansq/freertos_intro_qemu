@@ -43,7 +43,7 @@
           {
             "label": "RunQemu_0_cmake",
             "type": "shell",
-            "command": "${workspaceFolder}/misc/shell/cleanbuild_run_qemu.sh ${workspaceFolder}/0_cmake",
+            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/0_cmake",
             "isBackground": true,
             "problemMatcher": [
               {
