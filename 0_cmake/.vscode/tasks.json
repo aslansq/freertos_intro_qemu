@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
           {
-            "label": "Run QEMU",
+            "label": "Run_QEMU",
             "type": "shell",
             "command": "${workspaceFolder}/../misc/shell/build_run_qemu.sh ${workspaceFolder}",
             "isBackground": true,

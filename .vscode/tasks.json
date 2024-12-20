@@ -4,43 +4,6 @@
     "version": "2.0.0",
     "tasks": [
           {
-            "label": "Build 0_original",
-            "type": "shell",
-            "command": "make --directory=${workspaceFolder}/0_original/build/gcc",
-            "problemMatcher": {
-              "base": "$gcc",
-              "fileLocation": ["relative", "${workspaceFolder}/build/gcc"]
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-          },
-          {
-            "label": "Run QEMU 0_original",
-            "type": "shell",
-            "command": "echo 'QEMU 0_original started'; qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel ${workspaceFolder}/0_original/build/gcc/output/RTOSDemo.out -monitor none -nographic -serial stdio -s -S",
-            "dependsOn": ["Build 0_original"],
-            "isBackground": true,
-            "problemMatcher": [
-              {
-                "pattern": [
-                  {
-                    "regexp": ".",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                  }
-                ],
-                "background": {
-                  "activeOnStart": true,
-                  "beginsPattern": ".",
-                  "endsPattern": "QEMU 0_original started",
-                }
-              }
-            ]
-          },
-          {
             "label": "RunQemu_0_cmake",
             "type": "shell",
             "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/0_cmake",

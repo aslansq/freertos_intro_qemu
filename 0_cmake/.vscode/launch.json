@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Launch QEMU",
+            "name": "Launch_QEMU",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/demo",
@@ -13,7 +13,7 @@
             "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
             "miDebuggerServerAddress": "localhost:1234",
             "stopAtEntry": true,
-            "preLaunchTask": "Run QEMU",
+            "preLaunchTask": "Run_QEMU",
         },
     ]
 }
