@@ -4,23 +4,9 @@
     "version": "2.0.0",
     "tasks": [
           {
-            "label": "CleanBuild",
-            "type": "shell",
-            "command": "cd ${workspaceFolder}; rm -rf build; mkdir -p build; cd build; cmake ..; make -j all",
-            "problemMatcher": {
-              "base": "$gcc",
-              "fileLocation": ["relative", "${workspaceFolder}/build"]
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-          },
-          {
             "label": "Run QEMU",
             "type": "shell",
-            "command": "echo QEMU started; qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel ${workspaceFolder}/build/demo -monitor none -nographic -serial stdio -s -S",
-            "dependsOn": ["CleanBuild"],
+            "command": "${workspaceFolder}/../misc/shell/cleanbuild_run_qemu.sh ${workspaceFolder}",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -35,7 +21,7 @@
                 "background": {
                   "activeOnStart": true,
                   "beginsPattern": ".",
-                  "endsPattern": "QEMU started",
+                  "endsPattern": "QEMU_started",
                 }
               }
             ]
