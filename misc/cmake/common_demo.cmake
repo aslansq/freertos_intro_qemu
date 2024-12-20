@@ -1,6 +1,5 @@
-set(demo_root ${freertos_root}/Demo)
-set(common_demo_dir ${demo_root}/Common/Minimal)
-set(common_demo_inc ${demo_root}/Common/include)
+set(common_demo_dir ${freertos_demo_common_root}/Minimal)
+set(common_demo_inc ${freertos_demo_common_root}/include)
 
 set(common_demo_src
     ${common_demo_dir}/AbortDelay.c

@@ -3,12 +3,9 @@
 # Usage: ./run_qemu.sh <demo file>
 demo="$1"
 
-ungracefulExit()
-{
-    echoerr
-    echoerr ERROR!!
-    exit 1
-}
+thisPath=$(realpath "$0")
+thisDirPath=$(dirname "$thisPath")
+source "${thisDirPath}/util.sh"
 
 if [ ! -f "$demo" ]
 then
