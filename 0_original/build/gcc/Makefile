@@ -2,7 +2,7 @@ OUTPUT_DIR := ./output
 IMAGE := $(OUTPUT_DIR)/RTOSDemo.out
 
 # The directory that contains the /source and /demo sub directories.
-FREERTOS_ROOT = ./../../../FreeRTOS/FreeRTOS
+FREERTOS_ROOT = ./../../FreeRTOS/FreeRTOS
 
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc

@@ -1,0 +1,30 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch QEMU 0_original",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/0_original/build/gcc/output/RTOSDemo.out",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "Run QEMU 0_original"
+        },
+        {
+            "name": "Launch QEMU 0_cmake",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/0_cmake/build/demo",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "RunQemu_0_cmake"
+        },
+    ]
+}

@@ -19,7 +19,7 @@ then
     echoerr most likely you dont have qemu installed or it is not in path.
     ungracefulExit
 else
-    echo found QEMU
+    echo found qemu
 fi
 
 if [ -z "${GCC_ARM_NONE_EABI_BIN_PATH}" ]
@@ -60,7 +60,15 @@ else
     echo found make
 fi
 
-"${thisDirPath}/config/vscode/gen_vs_config.sh" "${demos}"
+out=$(cmake --help 2>&1 1>/dev/null)
+if [ $? != 0 ]
+then
+    echoerr "${out}"
+    echoerr most likely cmake is not installed
+    ungracefulExit
+else
+    echo found cmake
+fi
 
 echo
 echo SUCCESS!!
