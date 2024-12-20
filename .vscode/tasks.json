@@ -27,9 +27,9 @@
             ]
           },
           {
-            "label": "RunQemu_0_snapshot",
+            "label": "RunQemu_1_snapshot",
             "type": "shell",
-            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/0_snapshot",
+            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/1_snapshot",
             "isBackground": true,
             "problemMatcher": [
               {

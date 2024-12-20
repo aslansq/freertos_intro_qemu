@@ -16,15 +16,15 @@
             "preLaunchTask": "RunQemu_0_cmake"
         },
         {
-            "name": "Launch_QEMU_0_snapshot",
+            "name": "Launch_QEMU_1_snapshot",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/0_snapshot/build/demo",
+            "program": "${workspaceFolder}/1_snapshot/build/demo",
             "cwd": "${workspaceFolder}",
             "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
             "miDebuggerServerAddress": "localhost:1234",
             "stopAtEntry": true,
-            "preLaunchTask": "RunQemu_0_snapshot"
+            "preLaunchTask": "RunQemu_1_snapshot"
         },
     ]
 }
