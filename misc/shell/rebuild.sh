@@ -1,23 +1,23 @@
 #!/bin/bash
-# This script is used to rebuild a project
-# Usage: ./rebuild.sh <project path>
-prjPath="$1"
+# This script is used to rebuild a demo
+# Usage: ./rebuild.sh <demo path>
+demoPath="$1"
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
 
-if [ -z "${prjPath}" ]
+if [ -z "${demoPath}" ]
 then
-    echoerr "project path is not provided"
+    echoerr "demo path is not provided"
     ungracefulExit
 fi
 
-if [ ! -d "${prjPath}" ]
+if [ ! -d "${demoPath}" ]
 then
-    echoerr "project path does not exist"
+    echoerr "demo path does not exist"
     ungracefulExit
 fi
 
-rm -rf "${prjPath}/build"
-"${thisDirPath}/build.sh" "${prjPath}"
+rm -rf "${demoPath}/build"
+"${thisDirPath}/build.sh" "${demoPath}"

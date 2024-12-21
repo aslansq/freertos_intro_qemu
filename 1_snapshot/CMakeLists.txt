@@ -23,14 +23,4 @@ add_executable(${prj} ${src})
 # Include directories
 target_include_directories(${prj} PUBLIC ${inc})
 
-message("-- Source files for ${prj}:")
-# Print each source file on a new line
-foreach(file ${src})
-    message("\t${file}")
-endforeach()
-
-message("-- Include files for ${prj}:")
-# Print each source file on a new line
-foreach(file ${inc})
-    message("\t${file}")
-endforeach()
+include(../misc/cmake/log.cmake)

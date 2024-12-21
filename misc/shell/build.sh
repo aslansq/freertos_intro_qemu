@@ -1,29 +1,29 @@
 #!/bin/bash
-# This script is used to build a project
-# Usage: ./build.sh <project path>
-prjPath="$1"
+# This script is used to build a demo
+# Usage: ./build.sh <demo path>
+demoPath="$1"
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
 
-if [ -z "${prjPath}" ]
+if [ -z "${demoPath}" ]
 then
-    echoerr "project path is not provided"
+    echoerr "demo path is not provided"
     ungracefulExit
 fi
 
-if [ ! -d "${prjPath}" ]
+if [ ! -d "${demoPath}" ]
 then
-    echoerr "project path does not exist"
+    echoerr "demo path does not exist"
     ungracefulExit
 fi
 
-cd "${prjPath}"
+cd "${demoPath}"
 
 if [ $? != 0 ]
 then
-    echoerr "cd ${prjPath} failure"
+    echoerr "cd ${demoPath} failure"
     ungracefulExit
 fi
 
