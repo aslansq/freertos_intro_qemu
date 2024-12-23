@@ -48,6 +48,29 @@
                 }
               }
             ]
+          },
+          {
+            "label": "RunQemu_2_empty",
+            "type": "shell",
+            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/2_empty",
+            "isBackground": true,
+            "problemMatcher": [
+              {
+                "pattern": [
+                  {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                  }
+                ],
+                "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "QEMU_started",
+                }
+              }
+            ]
           }
     ]
 }
