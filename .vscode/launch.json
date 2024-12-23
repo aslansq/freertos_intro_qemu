@@ -26,5 +26,16 @@
             "stopAtEntry": true,
             "preLaunchTask": "RunQemu_1_snapshot"
         },
+        {
+            "name": "Launch_QEMU_2_empty",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/2_empty/build/demo",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "RunQemu_2_empty"
+        },
     ]
 }
