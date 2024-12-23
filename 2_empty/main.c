@@ -49,11 +49,22 @@
 /* FreeRTOS includes. */
 #include "FreeRTOS.h"
 #include "task.h"
-#include "app.h"
 
 /* Standard includes. */
 #include <stdio.h>
 #include <string.h>
+
+/* This project provides two demo applications.  A simple blinky style demo
+ * application, and a more comprehensive test and demo application.  The
+ * mainCREATE_SIMPLE_BLINKY_DEMO_ONLY setting is used to select between the two.
+ *
+ * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is 1 then the blinky demo will be built.
+ * The blinky demo is implemented and described in main_blinky.c.
+ *
+ * If mainCREATE_SIMPLE_BLINKY_DEMO_ONLY is not 1 then the comprehensive test and
+ * demo application will be built.  The comprehensive test and demo application is
+ * implemented and described in main_full.c. */
+#define mainCREATE_SIMPLE_BLINKY_DEMO_ONLY    1
 
 /* printf() output uses the UART.  These constants define the addresses of the
  * required UART registers. */
@@ -64,6 +75,7 @@
 #define UART0_BAUDDIV                         ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 16UL ) ) ) )
 #define TX_BUFFER_MASK                        ( 1UL )
 
+extern void app_init(void);
 /*
  * Only the comprehensive demo uses application hook (callback) functions.  See
  * https://www.FreeRTOS.org/a00016.html for more information.
