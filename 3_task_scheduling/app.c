@@ -1,6 +1,7 @@
 /* Standard includes. */
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 /* Kernel includes. */
 #include "FreeRTOS.h"
@@ -8,41 +9,98 @@
 #include "timers.h"
 #include "queue.h"
 
-#define APP_BLINKY_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
-#define APP_BLINKY_TASK_STACK_SIZE 1024
 
-static void app_blinky(void * pvParameters);
+#define APP_TASK_LOOP_PRIORITY (tskIDLE_PRIORITY + 1)
+#define APP_TASK1_PRIORITY     (tskIDLE_PRIORITY + 2)
+#define APP_TASK2_PRIORITY     (tskIDLE_PRIORITY + 3)
+#define APP_DEFAULT_TASK_STACK_SIZE 1024
+
+static void startTask1(void *parameter);
+static void startTask2(void *parameter);
+static void loop(void *parameter);
+static void slowPrintf(const char *s);
+
+// putting strings here so it can not get out of scope of a task
+static const char task1Msg[] = "Barkadeer brig Arr booty rum.";
+static const char task1DelMsg[] = "Task1 deleted.";
+
+TaskHandle_t task_1 = NULL;
+TaskHandle_t task_2 = NULL;
 
 void app_init(void) {
-    /* Start the two tasks as described in the comments at the top of this
-        * file. */
-    xTaskCreate(app_blinky,                 /* The function that implements the task. */
-                "blinky",                   /* The text name assigned to the task - for debug only as it is not used by the kernel. */
-                APP_BLINKY_TASK_STACK_SIZE, /* The size of the stack to allocate to the task. */
-                NULL,                       /* The parameter passed to the task - not used in this simple case. */
-                APP_BLINKY_TASK_PRIORITY,   /* The priority assigned to the task. */
-                NULL );                     /* The task handle is not required, so NULL is passed. */
+    xTaskCreate(startTask1,
+                "startTask1",
+                APP_DEFAULT_TASK_STACK_SIZE,
+                NULL,
+                APP_TASK1_PRIORITY,
+                &task_1);
+
+    xTaskCreate(startTask2,
+                "startTask2",
+                APP_DEFAULT_TASK_STACK_SIZE,
+                NULL,
+                APP_TASK2_PRIORITY,
+                &task_2);
+
+    xTaskCreate(loop,
+                "loop",
+                APP_DEFAULT_TASK_STACK_SIZE,
+                NULL,
+                APP_TASK_LOOP_PRIORITY,
+                NULL);
+
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
+}
 
-    /* If all is well, the scheduler will now be running, and the following
-     * line will never be reached.  If the following line does execute, then
-     * there was insufficient FreeRTOS heap memory available for the idle and/or
-     * timer tasks	to be created.  See the memory management section on the
-     * FreeRTOS web site for more details.  NOTE: This demo uses static allocation
-     * for the idle and timer tasks so this line should never execute. */
-    for( ; ; )
-    {
+static void slowPrintf(const char *s) {
+    size_t sLen = strlen(s);
+    for (size_t i = 0; i < sLen; i++) {
+        for(int j = 0; j < 10000000; j++) {
+            __asm__("nop");
+        }
+        printf("%c", s[i]);
     }
 }
 
-static void app_blinky( void * pvParameters ) {
+
+static void loop(void *parameter) {
     /* Prevent the compiler warning about the unused parameter. */
-    (void)pvParameters;
-    static uint8_t led_st = 0;
+    (void)parameter;
+    uint8_t i = 0;
+    while(1) {
+        for(i = 0; i < 3; ++i)
+        {
+            vTaskSuspend( task_2 );
+            vTaskDelay( pdMS_TO_TICKS( 2000 ) );
+            vTaskResume( task_2 );
+            vTaskDelay( pdMS_TO_TICKS( 2000 ) );
+        }
+
+        if(task_1 != NULL) {
+            vTaskDelete(task_1);
+            task_1 = NULL;
+            printf(task1DelMsg);
+        }
+    }
+}
+
+static void startTask1( void * parameter ) {
+    /* Prevent the compiler warning about the unused parameter. */
+    (void)parameter;
     for( ;; ) {
+        slowPrintf("\n");
+        slowPrintf(task1Msg);
+        slowPrintf("\n");
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
-        led_st = !led_st;
-        printf("Blinky: %d\n", (int)led_st);
+    }
+}
+
+static void startTask2( void * parameter ) {
+    /* Prevent the compiler warning about the unused parameter. */
+    (void)parameter;
+    for( ;; ) {
+        vTaskDelay( pdMS_TO_TICKS( 100 ) );
+        slowPrintf("*");
     }
 }
