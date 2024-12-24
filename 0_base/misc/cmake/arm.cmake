@@ -11,6 +11,7 @@ set(CMAKE_C_FLAGS  "-ffreestanding \
                     -mthumb \
                     -mcpu=cortex-m3 \
                     -Wall -Wextra -Wshadow \
+                    -Wno-unused-parameter \
                     -ggdb \
                     -Og \
                     -ffunction-sections \
