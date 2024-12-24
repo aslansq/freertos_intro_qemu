@@ -64,7 +64,7 @@ else
     echoWTab "$(cmake --version)"
 fi
 
-files=$(find ${thisDirPath}/misc/FreeRTOS -type f)
+files=$(find ${thisDirPath}/0_base/misc/FreeRTOS -type f)
 if [ -z "${files}" ]
 then
     echoerr FreeRTOS files not found. update submodules

@@ -4,55 +4,9 @@
     "version": "2.0.0",
     "tasks": [
           {
-            "label": "RunQemu_0_cmake",
+            "label": "RunQemu_2_blinky",
             "type": "shell",
-            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/0_cmake",
-            "isBackground": true,
-            "problemMatcher": [
-              {
-                "pattern": [
-                  {
-                    "regexp": ".",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                  }
-                ],
-                "background": {
-                  "activeOnStart": true,
-                  "beginsPattern": ".",
-                  "endsPattern": "QEMU_started",
-                }
-              }
-            ]
-          },
-          {
-            "label": "RunQemu_1_snapshot",
-            "type": "shell",
-            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/1_snapshot",
-            "isBackground": true,
-            "problemMatcher": [
-              {
-                "pattern": [
-                  {
-                    "regexp": ".",
-                    "file": 1,
-                    "location": 2,
-                    "message": 3
-                  }
-                ],
-                "background": {
-                  "activeOnStart": true,
-                  "beginsPattern": ".",
-                  "endsPattern": "QEMU_started",
-                }
-              }
-            ]
-          },
-          {
-            "label": "RunQemu_2_empty",
-            "type": "shell",
-            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/2_empty",
+            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/2_blinky",
             "isBackground": true,
             "problemMatcher": [
               {

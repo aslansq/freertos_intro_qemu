@@ -1,1 +1,0 @@
-set(inc ${inc} "${CMAKE_CURRENT_SOURCE_DIR}" PARENT_SCOPE)
