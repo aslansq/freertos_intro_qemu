@@ -5,7 +5,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 
 [Introduction to RTOS | Digi-Key Electronics](https://www.youtube.com/playlist?list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz)
 
-| Youtube                                     | Link in Repo      |
+| Youtube                                     | Demo              |
 |---------------------------------------------|-------------------|
 |[Introduction to RTOS Part 3 - Task Scheduling](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)|[3_task_scheduling](./3_task_scheduling/README.md)|
 
@@ -30,3 +30,15 @@ You dont have hardware and you dont care about any specific hardware but learnin
 
 ## Manual Build and Run QEMU
 Use the scripts under ```misc\shell```
+
+## Versions
+
+Exact versions are not mandatory. Given as example.
+
+| Tool              | Version      |
+|-------------------|--------------|
+| qemu-system-arm   | 6.2.0        |
+| arm-none-eabi-gcc | 10.3-2021.10 |
+| make              | 4.3          |
+| cmake             | 3.25.1       |
+| Tracealyzer       | 4.10.2       |

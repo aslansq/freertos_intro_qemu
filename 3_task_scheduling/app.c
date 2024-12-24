@@ -7,7 +7,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "timers.h"
-#include "queue.h"
 
 
 #define APP_TASK_LOOP_PRIORITY (tskIDLE_PRIORITY + 1)

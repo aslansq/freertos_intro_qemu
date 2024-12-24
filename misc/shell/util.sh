@@ -10,3 +10,10 @@ ungracefulExit()
     echoerr ERROR!!
     exit 1
 }
+
+echoWTab()
+{
+    while IFS= read -r line; do
+    echo -e "\t$line"
+    done <<< "$@"
+}
