@@ -11,7 +11,7 @@
           {
             "label": "Run_QEMU",
             "type": "shell",
-            "command": "${workspaceFolder}/../misc/shell/build_run_qemu.sh ${workspaceFolder}",
+            "command": "${workspaceFolder}/../misc/shell/build_run_qemu.sh ${workspaceFolder} debug",
             "isBackground": true,
             "problemMatcher": [
               {

@@ -1,9 +1,12 @@
 #!/bin/bash
 # This script is used to build and run a project in QEMU
-# Usage: ./build_run_qemu.sh <project path>
+# Usage: ./build_run_qemu.sh <project path> <optional: debug>
+# Eaxmple: ./build_run_qemu.sh ../../3_task_scheduling
+# Eaxmple: ./build_run_qemu.sh ../../3_task_scheduling debug
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 demoPath="$1"
+debug="$2"
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
@@ -23,4 +26,4 @@ then
 fi
 
 echo 'QEMU_started'
-${thisDirPath}/run_qemu.sh "${demoPath}/build/demo"
+${thisDirPath}/run_qemu.sh "${demoPath}/build/demo" "${debug}"
