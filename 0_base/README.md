@@ -1,3 +1,3 @@
-# 1_snapshot
-Run in debug console to dump the trace  
--exec dump binary value trace.bin *RecorderDataPtr
+# 0_base
+
+Not compilable by itself. It is base for other applications.
