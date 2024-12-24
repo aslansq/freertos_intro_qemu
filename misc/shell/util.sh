@@ -1,6 +1,6 @@
 #!/bin/bash
 
-demos="0_cmake 1_snapshot"
+demos="2_blinky 3_task_scheduling"
 
 echoerr() { echo "$@" 1>&2; }
 

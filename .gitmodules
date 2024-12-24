@@ -1,3 +1,3 @@
-[submodule "misc/FreeRTOS"]
-	path = misc/FreeRTOS
+[submodule "0_base/misc/FreeRTOS"]
+	path = 0_base/misc/FreeRTOS
 	url = https://github.com/FreeRTOS/FreeRTOS/
