@@ -1,6 +1,6 @@
 #!/bin/bash
 
-demos="2_blinky 3_task_scheduling"
+demos="2_blinky 3_task_scheduling 3_task_scheduling_challenge"
 
 echoerr() { echo "$@" 1>&2; }
 

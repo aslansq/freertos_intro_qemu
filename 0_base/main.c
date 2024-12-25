@@ -53,6 +53,7 @@
 /* Standard includes. */
 #include <stdio.h>
 #include <string.h>
+#include "uart.h"
 
 /* This project provides two demo applications.  A simple blinky style demo
  * application, and a more comprehensive test and demo application.  The
@@ -68,12 +69,7 @@
 
 /* printf() output uses the UART.  These constants define the addresses of the
  * required UART registers. */
-#define UART0_ADDRESS                         ( 0x40004000UL )
-#define UART0_DATA                            ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 0UL ) ) ) )
-#define UART0_STATE                           ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 4UL ) ) ) )
-#define UART0_CTRL                            ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 8UL ) ) ) )
-#define UART0_BAUDDIV                         ( *( ( ( volatile uint32_t * ) ( UART0_ADDRESS + 16UL ) ) ) )
-#define TX_BUFFER_MASK                        ( 1UL )
+
 
 extern void app_init(void);
 /*
@@ -268,7 +264,7 @@ void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
 static void prvUARTInit( void )
 {
     UART0_BAUDDIV = 16;
-    UART0_CTRL = 1;
+    UART0_CTRL = ( UART0_CTRL_TX_EN | UART0_CTRL_RX_EN );
 }
 /*-----------------------------------------------------------*/
 
@@ -294,6 +290,8 @@ int __write( int iFile,
 
     return iStringLength;
 }
+
+
 /*-----------------------------------------------------------*/
 
 void * malloc( size_t size )
