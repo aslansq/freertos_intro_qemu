@@ -1,0 +1,24 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: carlosperate/arm-none-eabi-gcc-action@v1.10.0
+      with:
+        # GNU Embedded Toolchain for Arm release name (e.g. "10.3-2021.07").
+        release: "10.3-2021.10"# optional, default is latest
+        # Name for an environmental variable to be created with the toolchain path.
+        path-env-var: "GCC_ARM_NONE_EABI_BIN_PATH" # optional
+    - name: configure
+      run: ./configure.sh
+    
