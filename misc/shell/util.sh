@@ -1,6 +1,6 @@
 #!/bin/bash
 
-demos="2_blinky 3_task_scheduling 3_task_scheduling_challenge 4_memory"
+demos="2_blinky 3_task_scheduling 3_task_scheduling_challenge 4_memory 4_memory_challenge"
 
 getMacros()
 {
