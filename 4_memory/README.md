@@ -1,28 +1,38 @@
-# 3_task_scheduling
+# 4_memory
 
 Implementation in [app.c](./app.c).
 
-[Introduction to RTOS Part 3 - Task Scheduling | Digi-Key Electronics](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)
+[Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)
 
-Task2 has higher priority and preempts task1.
-![Task2 preempts Task1](./doc/taskPreemption.png "Task2 preempts Task1")
+This file demonstrates memory management in FreeRTOS
+Explanation of demos:
+```
+// demo 1 : overflow stack by recursive call
+#define APP_DEMO_1 1
+// demo 2 : allocating huge array in stack to ovf
+#define APP_DEMO_2 2
+// demo 3 : ovf heap u32 at a time
+#define APP_DEMO_3 3
+// demo 4 : ovf heap in single shot
+#define APP_DEMO_4 4
+// demo 5 : properly malloc and free. this should be fine
+#define APP_DEMO_5 5
+// demo 6 : overflow of static stack by recursive call
+#define APP_DEMO_6 6
+
+#ifndef APP_DEMO
+    #define APP_DEMO APP_DEMO_1
+#endif
+```
 
 ## Terminal Output
+Terminal output of APP_DEMO_1:
 ```
-*Bar*kad*eer* b*rig* Ar*r b*oo*ty *rum*.
+rem: 0 tec: 574
+rem: 0 tec: 575
+re
 
-Barkadeer brig Arr booty rum.
-********
-B*ar*kad*ee*r *bri*g *Arr* b*oot*y *ru*m.
-
-Barkadeer brig Arr booty rum.
-********
-B*ar*kad*ee*r b*ri*g A*rr* bo*oty* r*um.*
-
-Barkadeer brig Arr booty rum.
-********
-B*ar*ka*dee*r *br*ig *Ar*r b*oo*ty* ru*m.*
-Task1 deleted.***********
+Stack overflow in A
 ```
 
 ## Notes

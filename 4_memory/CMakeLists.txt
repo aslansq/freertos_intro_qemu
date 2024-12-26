@@ -10,6 +10,11 @@ include("${CMAKE_CURRENT_SOURCE_DIR}/0_base/misc/cmake/freertos.cmake")
 # Set the project name
 project(${prj})
 
+if(APP_DEMO)
+    message(STATUS "APP_DEMO is set to ${APP_DEMO}")
+    add_compile_definitions(APP_DEMO=${APP_DEMO})
+endif()
+
 add_subdirectory(0_base)
 
 # Add all source files in the current directory
