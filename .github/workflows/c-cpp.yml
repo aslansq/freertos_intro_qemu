@@ -19,6 +19,6 @@ jobs:
         release: "10.3-2021.10"# optional, default is latest
         # Name for an environmental variable to be created with the toolchain path.
         path-env-var: "GCC_ARM_NONE_EABI_BIN_PATH" # optional
-    - name: rebuild_all.sh
-      run: ./misc/shell/rebuild_all.sh
+    - name: build_them_all
+      run: git submodule update --init --recursive && ./misc/shell/rebuild_all.sh
     
