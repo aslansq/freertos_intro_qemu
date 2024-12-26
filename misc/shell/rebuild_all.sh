@@ -38,3 +38,5 @@ do
         done
     fi
 done
+
+echo "All demos rebuilt successfully!"
