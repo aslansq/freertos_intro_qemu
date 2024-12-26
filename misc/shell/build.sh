@@ -1,7 +1,11 @@
 #!/bin/bash
 # This script is used to build a demo
-# Usage: ./build.sh <demo path>
-demoPath="$1"
+# Usage: ./build.sh <demo path> <optional: macros>
+demoPath=$(realpath "$1")
+macros=""
+if [ ! -z "$2" ]; then
+    macros="$2"
+fi
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
@@ -15,7 +19,7 @@ fi
 
 if [ ! -d "${demoPath}" ]
 then
-    echoerr "demo path does not exist"
+    echoerr "demo path does not exist. ${demoPath}"
     ungracefulExit
 fi
 
@@ -31,7 +35,8 @@ mkdir -p build
 cd build
 if [ ! -f build/Makefile ]
 then
-    cmake ..
+    echo cmake .. ${macros}
+    cmake .. ${macros}
 fi
 
 make -j all

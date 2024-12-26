@@ -1,7 +1,11 @@
 #!/bin/bash
 # This script is used to rebuild a demo
-# Usage: ./rebuild.sh <demo path>
-demoPath="$1"
+# Usage: ./rebuild.sh <demo path> <optional: macros>
+demoPath=$(realpath "$1")
+macros=""
+if [ ! -z "$2" ]; then
+    macros="$2"
+fi
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
@@ -15,9 +19,9 @@ fi
 
 if [ ! -d "${demoPath}" ]
 then
-    echoerr "demo path does not exist"
+    echoerr "demo path does not exist${demoPath}"
     ungracefulExit
 fi
 
 rm -rf "${demoPath}/build"
-"${thisDirPath}/build.sh" "${demoPath}"
+"${thisDirPath}/build.sh" ${demoPath} ${macros}
