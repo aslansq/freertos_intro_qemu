@@ -20,5 +20,6 @@ set(CMAKE_C_FLAGS  "-ffreestanding \
 set(CMAKE_EXE_LINKER_FLAGS "-T ${CMAKE_SOURCE_DIR}/0_base/misc/mps2_m3.ld \
                             -Xlinker -Map=${prj}.map \
                             -Xlinker --gc-sections \
+                            -Xlinker --print-memory-usage \
                             -nostartfiles \
                             -specs=nano.specs -specs=nosys.specs")

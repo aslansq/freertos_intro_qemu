@@ -37,5 +37,16 @@
             "stopAtEntry": true,
             "preLaunchTask": "RunQemu_3_task_scheduling_challenge"
         },
+        {
+            "name": "Launch_QEMU_4_memory",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/4_memory/build/demo",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "RunQemu_4_memory"
+        },
     ]
 }
