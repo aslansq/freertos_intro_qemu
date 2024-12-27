@@ -18,7 +18,13 @@
 #define TX_BUFFER_MASK   ( 1UL )
 
 int uart0_read(char *ptrBuffer, int bufferLen);
+/**
+ * @retval -1 : if does not fit into buffer
+ * @retval 0 to n : number of character read
+ */
 int uart0_readLine(char *ptrBuffer, int bufferLen);
-uint8_t uart0_readU32NonBlock(uint32_t *num);
+/**
+ * this has internal buffer of 100. not all the checks implemented since this is just demo code
+ */
 uint8_t uart0_readU32(uint32_t *num);
 #endif // BASE_UART_H

@@ -21,21 +21,26 @@ int uart0_readLine(char *ptrBuffer, int bufferLen)
 {
     char c = '\0';
     int i;
+    int retVal = 0;
 
     for (i = 0; i < bufferLen; i++)
     {
         UART0_RX_WAIT();
         c = UART0_DATA;
         if(c == '\r') {
-            *ptrBuffer = '\0';
+            ptrBuffer[i] = '\0';
             break;
         } else {
-            *ptrBuffer = c;
-            ptrBuffer++;
+            ptrBuffer[i] = c;
         }
     }
 
-    return i;
+    if((i == (bufferLen-1)) && (ptrBuffer[i] != '\0')) {
+        ptrBuffer[i] = '\0';
+        retVal = -1;
+    }
+
+    return retVal;
 }
 
 

@@ -16,9 +16,11 @@ jobs:
     - uses: carlosperate/arm-none-eabi-gcc-action@v1.10.0
       with:
         # GNU Embedded Toolchain for Arm release name (e.g. "10.3-2021.07").
-        release: "10.3-2021.10"# optional, default is latest
+        release: "10.3-2021.10"
         # Name for an environmental variable to be created with the toolchain path.
-        path-env-var: "GCC_ARM_NONE_EABI_BIN_PATH" # optional
-    - name: build_them_all
-      run: git submodule update --init --recursive && ./misc/shell/rebuild_all.sh
-    
+        path-env-var: "GCC_ARM_NONE_EABI_BIN_PATH"
+    - name: submodule_update
+      run: git submodule update --init --recursive
+    - name: build_all
+      run: ./misc/shell/rebuild_all.sh
+
