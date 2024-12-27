@@ -35,6 +35,7 @@
 #define UART1_INT        ( *( ( ( volatile uint32_t * ) ( UART1_ADDRESS + UART_INT_OFFSET  ) ) ) )
 #define UART1_BAUDDIV    ( *( ( ( volatile uint32_t * ) ( UART1_ADDRESS + UART_BAUD_OFFSET ) ) ) )
 
+int uart0_readNonBlock(char *ptrBuffer, int bufferLen);
 int uart0_read(char *ptrBuffer, int bufferLen);
 /**
  * @retval -1 : if does not fit into buffer
