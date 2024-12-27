@@ -6,7 +6,9 @@ demos="\
 3_task_scheduling_challenge \
 4_memory \
 4_memory_challenge \
-5_queue"
+5_queue \
+5_queue_challenge \
+6_mutex"
 
 getMacros()
 {
