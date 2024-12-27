@@ -27,4 +27,4 @@ else
     ungracefulExit
 fi
 
-qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demo" -monitor none -nographic -serial stdio $debugFlags
+qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demo" -monitor none -nographic -serial stdio -serial pty $debugFlags

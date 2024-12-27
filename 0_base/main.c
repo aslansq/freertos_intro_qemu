@@ -265,6 +265,8 @@ static void prvUARTInit( void )
 {
     UART0_BAUDDIV = 16;
     UART0_CTRL = ( UART0_CTRL_TX_EN | UART0_CTRL_RX_EN );
+    UART1_BAUDDIV = 16;
+    UART1_CTRL = UART0_CTRL_TX_EN;
 }
 /*-----------------------------------------------------------*/
 
@@ -280,7 +282,7 @@ int __write( int iFile,
     /* Output the formatted string to the UART. */
     for( iNextChar = 0; iNextChar < iStringLength; iNextChar++ )
     {
-        while( ( UART0_STATE & TX_BUFFER_MASK ) != 0 )
+        while( ( UART0_STATE & UART_STATE_TX_BF ) != 0 )
         {
         }
 
