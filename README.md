@@ -11,6 +11,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |[Introduction to RTOS Part 3 - Task Scheduling](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)|[3_task_scheduling](./3_task_scheduling/README.md)|[3_task_scheduling_challenge](./3_task_scheduling_challenge/README.md)|
 |[Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)|[4_memory](./4_memory/README.md)|[4_memory_challenge](./4_memory_challenge/README.md)|
 |[Introduction to RTOS Part 5 - Queue](https://www.youtube.com/watch?v=pHJ3lxOoWeI&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=5)|[5_queue](./5_queue/README.md)|[5_queue_challenge](./5_queue_challenge/README.md)|
+|[Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)|[6_mutex](./6_mutex/README.md)||
 
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.

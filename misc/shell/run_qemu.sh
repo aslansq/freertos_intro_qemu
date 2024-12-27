@@ -10,7 +10,7 @@ source "${thisDirPath}/util.sh"
 
 if [ ! -f "$demo" ]
 then
-    echoerr "Demo file does not exist: $demo"
+    echoerr "Demo binary does not exist: $demo"
     ungracefulExit
 fi
 
