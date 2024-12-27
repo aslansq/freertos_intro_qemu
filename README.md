@@ -1,3 +1,4 @@
+![all_builds](https://github.com/aslansq/freertos_qemu_vscode/actions/workflows/c-cpp.yml/badge.svg)
 # freertos_qemu_vscode
 FreeRTOS Qemu Demos in VSCode
 
@@ -9,6 +10,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |---------------------------------------------|-------------------|--------------------|
 |[Introduction to RTOS Part 3 - Task Scheduling](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)|[3_task_scheduling](./3_task_scheduling/README.md)|[3_task_scheduling_challenge](./3_task_scheduling_challenge/README.md)|
 |[Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)|[4_memory](./4_memory/README.md)|[4_memory_challenge](./4_memory_challenge/README.md)|
+|[Introduction to RTOS Part 5 - Queue](https://www.youtube.com/watch?v=pHJ3lxOoWeI&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=5)|[5_queue](./5_queue/README.md)||
 
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.
@@ -20,7 +22,7 @@ You dont have hardware and you dont care about any specific hardware but learnin
 * Install GNU make utility.
 * Install CMake utility.
 * Update submodules recursively. ```git submodule update --init --recursive```
-* Give execute permission files under ```misc\shell```. ```chmod +x misc\shell\*.sh```
+* Give execute permission files under ```misc/shell```. ```chmod +x misc/shell/*.sh```
 * After all satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities.
 
 ## Running with VSCode
@@ -30,7 +32,7 @@ You dont have hardware and you dont care about any specific hardware but learnin
 4. This will build, run, and attach a debugger to the demo program.
 
 ## Manual Build and Run QEMU
-Use the scripts under ```misc\shell```
+Use the scripts under ```misc/shell```
 
 ## Versions
 

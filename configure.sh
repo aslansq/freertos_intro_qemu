@@ -2,17 +2,6 @@ thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/misc/shell/util.sh"
 
-out=$(qemu-system-arm --help 2>&1 1>/dev/null)
-if [ $? != 0 ]
-then
-    echoerr "${out}"
-    echoerr most likely you dont have qemu installed or it is not in path.
-    ungracefulExit
-else
-    echo "- found qemu"
-    echoWTab "$(qemu-system-arm --version)"
-fi
-
 if [ -z "${GCC_ARM_NONE_EABI_BIN_PATH}" ]
 then
     echoerr environment variable GCC_ARM_NONE_EABI_BIN_PATH is empty
@@ -84,6 +73,18 @@ do
         echo "- found execute permission for ${file}"
     fi
 done
+
+out=$(qemu-system-arm --help 2>&1 1>/dev/null)
+if [ $? != 0 ]
+then
+    echoerr "${out}"
+    echoerr you are good to compile but can not run with qemu.
+    echoerr most likely you dont have qemu installed or it is not in path.
+    ungracefulExit
+else
+    echo "- found qemu"
+    echoWTab "$(qemu-system-arm --version)"
+fi
 
 echo
 echo SUCCESS!!
