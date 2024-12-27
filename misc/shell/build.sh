@@ -1,10 +1,10 @@
 #!/bin/bash
 # This script is used to build a demo
-# Usage: ./build.sh <demo path> <optional: macros>
+# Usage: ./build.sh <demo path> <optional: macro>
 demoPath=$(realpath "$1")
-macros=""
+macro=""
 if [ ! -z "$2" ]; then
-    macros="$2"
+    macro="$2"
 fi
 
 thisPath=$(realpath "$0")
@@ -35,8 +35,8 @@ mkdir -p build
 cd build
 if [ ! -f build/Makefile ]
 then
-    echo cmake .. ${macros}
-    cmake .. ${macros}
+    echo cmake .. ${macro}
+    cmake .. ${macro}
 fi
 
 make -j all

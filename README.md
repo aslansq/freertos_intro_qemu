@@ -20,7 +20,7 @@ You dont have hardware and you dont care about any specific hardware but learnin
 * Install GNU make utility.
 * Install CMake utility.
 * Update submodules recursively. ```git submodule update --init --recursive```
-* Give execute permission files under ```misc\shell```. ```chmod +x misc\shell\*.sh```
+* Give execute permission files under ```misc/shell```. ```chmod +x misc/shell/*.sh```
 * After all satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities.
 
 ## Running with VSCode
@@ -30,7 +30,7 @@ You dont have hardware and you dont care about any specific hardware but learnin
 4. This will build, run, and attach a debugger to the demo program.
 
 ## Manual Build and Run QEMU
-Use the scripts under ```misc\shell```
+Use the scripts under ```misc/shell```
 
 ## Versions
 
