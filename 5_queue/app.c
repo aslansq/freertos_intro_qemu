@@ -8,41 +8,79 @@
 #include "timers.h"
 #include "queue.h"
 
-#define APP_BLINKY_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
-#define APP_BLINKY_TASK_STACK_SIZE 1024
+#define APP_DEFAULT_PRIORITY   (tskIDLE_PRIORITY + 1)
+#define APP_DEFAULT_STACK_SIZE (1024u)
 
-static void app_blinky(void * pvParameters);
+#define APP_PRINT_MSG_DELAY (1000)
+#define APP_SEND_MSG_DELAY  (100)
+
+static void app_printMsgs(void * pvParameters);
+static void app_sendMsg(void * pvParameters);
+
+static QueueHandle_t xQueue1 = NULL;
 
 void app_init(void) {
-    /* Start the two tasks as described in the comments at the top of this
-        * file. */
-    xTaskCreate(app_blinky,                 /* The function that implements the task. */
-                "blinky",                   /* The text name assigned to the task - for debug only as it is not used by the kernel. */
-                APP_BLINKY_TASK_STACK_SIZE, /* The size of the stack to allocate to the task. */
-                NULL,                       /* The parameter passed to the task - not used in this simple case. */
-                APP_BLINKY_TASK_PRIORITY,   /* The priority assigned to the task. */
-                NULL );                     /* The task handle is not required, so NULL is passed. */
+    xTaskCreate(app_printMsgs,
+                "print",
+                APP_DEFAULT_STACK_SIZE,
+                NULL,
+                APP_DEFAULT_PRIORITY,
+                NULL );
+
+    xTaskCreate(app_sendMsg,
+                "send",
+                APP_DEFAULT_STACK_SIZE,
+                NULL,
+                APP_DEFAULT_PRIORITY,
+                NULL );
+
+    // can hold 10 int32_t
+    xQueue1 = xQueueCreate( 10, sizeof( uint8_t ) );
+
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
 
-    /* If all is well, the scheduler will now be running, and the following
-     * line will never be reached.  If the following line does execute, then
-     * there was insufficient FreeRTOS heap memory available for the idle and/or
-     * timer tasks	to be created.  See the memory management section on the
-     * FreeRTOS web site for more details.  NOTE: This demo uses static allocation
-     * for the idle and timer tasks so this line should never execute. */
     for( ; ; )
     {
     }
 }
 
-static void app_blinky( void * pvParameters ) {
+static void app_printMsgs( void * pvParameters ) {
     /* Prevent the compiler warning about the unused parameter. */
     (void)pvParameters;
-    static uint8_t led_st = 0;
+    uint8_t msg = 0;
+    BaseType_t recvRet; // receive return value
     for( ;; ) {
-        vTaskDelay( pdMS_TO_TICKS( 1000 ) );
-        led_st = !led_st;
-        printf("Blinky: %d\n", (int)led_st);
+        if (xQueue1 == NULL) {
+            // do nothing
+        } else {
+            recvRet = xQueueReceive(xQueue1, (void *)&msg, (TickType_t)0);
+            if(recvRet != pdTRUE) {
+                printf("-1\n");
+            } else {
+                printf("%d\n", (int)msg);
+            }
+        }
+        vTaskDelay( pdMS_TO_TICKS( APP_PRINT_MSG_DELAY ) );
+    }
+}
+
+static void app_sendMsg( void * pvParameters ) {
+    /* Prevent the compiler warning about the unused parameter. */
+    (void)pvParameters;
+    uint8_t msg = 0;
+    BaseType_t sendRet; // send function return value
+    for( ;; ) {
+        if(xQueue1 == NULL) {
+            // do nothing
+        } else {
+            // can wait for 10 ticks if necessary
+            sendRet = xQueueSend(xQueue1, (void *)&msg, (TickType_t)10);
+            if(sendRet != pdTRUE) {
+                // just here so you can put breakpoint
+            }
+        }
+        msg++;
+        vTaskDelay( pdMS_TO_TICKS( APP_SEND_MSG_DELAY ) );
     }
 }
