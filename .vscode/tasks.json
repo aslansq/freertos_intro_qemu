@@ -163,6 +163,29 @@
                 }
               }
             ]
+          },
+          {
+            "label": "RunQemu_6_mutex",
+            "type": "shell",
+            "command": "${workspaceFolder}/misc/shell/build_run_qemu.sh ${workspaceFolder}/6_mutex debug",
+            "isBackground": true,
+            "problemMatcher": [
+              {
+                "pattern": [
+                  {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                  }
+                ],
+                "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "QEMU_started",
+                }
+              }
+            ]
           }
     ]
 }

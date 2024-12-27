@@ -6,7 +6,9 @@ demos="\
 3_task_scheduling_challenge \
 4_memory \
 4_memory_challenge \
-5_queue"
+5_queue \
+5_queue_challenge \
+6_mutex"
 
 getMacros()
 {
@@ -19,10 +21,18 @@ getMacros()
     -DAPP_DEMO=6\
     "
 
+    demo_6_mutex_macros="\
+    -DAPP_DEMO_RACE:BOOL=ON\
+    -DAPP_DEMO_MUTEX:BOOL=ON\
+    "
+
     demo="$1"
     if [ "${demo}" == "4_memory" ]
     then
         echo "${demo_4_memory_macros}"
+    elif [ "${demo}" == "6_mutex" ]
+    then
+        echo "${demo_6_mutex_macros}"
     fi
 }
 
