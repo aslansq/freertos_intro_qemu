@@ -8,6 +8,7 @@
 #include "task.h"
 #include "timers.h"
 #include "uart.h"
+#include "util.h"
 
 #define APP_TASK_INPUT_PRIORITY (tskIDLE_PRIORITY + 1)
 #define APP_TASK_LED_PRIORITY   (tskIDLE_PRIORITY + 1)
@@ -57,7 +58,7 @@ static void taskLed( void * parameter ) {
     (void)parameter;
     uint8_t ledSt = 1;
     for( ;; ) {
-        printf("LED: %d\n", ledSt);
+        util_ledSet(ledSt);
         ledSt = !ledSt;
         vTaskDelay( pdMS_TO_TICKS( ledDelay ) );
     }

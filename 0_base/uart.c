@@ -1,7 +1,23 @@
 #include "uart.h"
 #include <stdio.h>
 
+#define UART0_RX_AVAIL() ((UART0_STATE & UART_STATE_RX_BF) != 0)
 #define UART0_RX_WAIT()  while ((UART0_STATE & UART_STATE_RX_BF) == 0)
+// wait until it is available to put a char to uart1 tx buffer
+#define UART1_TX_WAIT_AVAIL() while( ( UART1_STATE & UART_STATE_TX_BF ) != 0 )
+
+int uart0_readNonBlock(char *ptrBuffer, int bufferLen) {
+    int i;
+    for(i = 0; i < bufferLen; ++i) {
+        if(UART0_RX_AVAIL()) {
+            ptrBuffer[i] = UART0_DATA;
+        } else {
+            break;
+        }
+    }
+
+    return i; // returns number of characters read
+}
 
 int uart0_read(char *ptrBuffer, int bufferLen)
 {
@@ -53,4 +69,17 @@ uint8_t uart0_readU32(uint32_t *num) {
         *num = (*num * 10) + (buf[i] - '0');
     }
     return 1;
+}
+
+void uart1_print(char *str) {
+    for( ; (*str) != '\0' ; )
+    {
+        if(*str=='\n') {
+            UART1_TX_WAIT_AVAIL();
+            UART1_DATA = '\r';
+        }
+        UART1_TX_WAIT_AVAIL();
+        UART1_DATA = *str;
+        str++;
+    }
 }

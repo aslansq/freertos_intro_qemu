@@ -5,8 +5,8 @@
 /* Kernel includes. */
 #include "FreeRTOS.h"
 #include "task.h"
-#include "timers.h"
-#include "queue.h"
+#include "uart.h"
+#include "util.h"
 
 #define APP_BLINKY_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
 #define APP_BLINKY_TASK_STACK_SIZE 1024
@@ -43,6 +43,6 @@ static void app_blinky( void * pvParameters ) {
     for( ;; ) {
         vTaskDelay( pdMS_TO_TICKS( 1000 ) );
         led_st = !led_st;
-        printf("Blinky: %d\n", (int)led_st);
+        util_ledSet(led_st);
     }
 }
