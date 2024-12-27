@@ -1,3 +1,4 @@
+![all_builds](https://github.com/aslansq/freertos_qemu_vscode/actions/workflows/c-cpp.yml/badge.svg)
 # freertos_qemu_vscode
 FreeRTOS Qemu Demos in VSCode
 
