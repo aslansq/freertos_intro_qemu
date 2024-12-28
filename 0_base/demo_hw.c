@@ -16,6 +16,15 @@ static uint8_t __led_st = 0;
 
 // PUBLIC
 
+void demo_hw_term_printf(const char *format, ...) {
+    va_list args;
+    va_start(args, format);
+    char buf[100];
+    vsprintf(buf, format, args);
+    demo_hw_term_write(buf);
+    va_end(args);
+}
+
 void demo_hw_term_writeChar(char c) {
     UART0_TX_WAIT();
     UART0_DATA = c;

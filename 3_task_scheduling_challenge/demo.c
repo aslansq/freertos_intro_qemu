@@ -40,16 +40,15 @@ static void _taskInput( void * parameter ) {
     (void)parameter;
     demo_hw_term_writeLine("Enter LED delay(ms):");
     int inledDelay = 0;
-    char buf[100];
     int r;
+    char buf[50];
 
     for( ;; ) {
         r = demo_hw_term_readLine(buf, sizeof(buf));
         if(r >= 0) {
             inledDelay = atoi(buf);
             __ledDelay = inledDelay;
-            sprintf(buf, "Led delay updated to(ms): %d", __ledDelay);
-            demo_hw_term_writeLine(buf);
+            demo_hw_term_printf("Led delay updated to(ms): %d", __ledDelay);
         }
     }
 }

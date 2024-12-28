@@ -3,7 +3,14 @@
 #ifndef DEMO_HW
 #define DEMO_HW
 
+#include <stdio.h>
+#include <stdarg.h>
 #include <stdint.h>
+
+/**
+ * @brief printf
+ */
+void demo_hw_term_printf(const char *format, ...);
 
 /**
  * @brief write a byte to terminal
