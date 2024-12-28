@@ -1,6 +1,6 @@
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
-source "${thisDirPath}/misc/shell/util.sh"
+source "${thisDirPath}/shell/util.sh"
 
 if [ -z "${GCC_ARM_NONE_EABI_BIN_PATH}" ]
 then
@@ -62,7 +62,7 @@ else
     echo "- found FreeRTOS files"
 fi
 
-files=$(find "${thisDirPath}/misc/shell" -type f)
+files=$(find "${thisDirPath}/shell" -type f)
 for file in ${files}
 do
     if [ ! -x "${file}" ]

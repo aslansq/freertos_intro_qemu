@@ -12,8 +12,8 @@ Two demos available. Pass one of the arguments to CMake.
 
 ## Terminal Output
 ```
-$ ../misc/shell/rebuild.sh . -DAPP_DEMO_MUTEX:BOOL=ON
-$ ../misc/shell/run_qemu.sh ./build/demo
+$ ../shell/rebuild.sh . -DAPP_DEMO_MUTEX:BOOL=ON
+$ ../shell/run_qemu.sh ./build/demo
 char device redirected to /dev/pts/1 (label serial1)
 1
 2
@@ -33,8 +33,8 @@ char device redirected to /dev/pts/1 (label serial1)
 ```
 
 ```
-$ ../misc/shell/rebuild.sh . -DAPP_DEMO_RACE:BOOL=ON
-$ ../misc/shell/run_qemu.sh ./build/demo
+$ ../shell/rebuild.sh . -DAPP_DEMO_RACE:BOOL=ON
+$ ../shell/run_qemu.sh ./build/demo
 char device redirected to /dev/pts/1 (label serial1)
 1
 1

@@ -3,7 +3,7 @@
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
-prjRootPath=$(realpath "${thisDirPath}/../..") # This is the root path of the project
+prjRootPath=$(realpath "${thisDirPath}/../") # This is the root path of the project
 
 note=""
 

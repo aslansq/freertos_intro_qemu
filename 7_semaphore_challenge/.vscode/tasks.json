@@ -6,12 +6,12 @@
           {
             "label": "Clean_Build",
             "type": "shell",
-            "command": "${workspaceFolder}/../misc/shell/rebuild.sh ${workspaceFolder}"
+            "command": "${workspaceFolder}/../shell/rebuild.sh ${workspaceFolder}"
           },
           {
             "label": "Run_QEMU",
             "type": "shell",
-            "command": "${workspaceFolder}/../misc/shell/build_run_qemu.sh ${workspaceFolder} debug",
+            "command": "${workspaceFolder}/../shell/build_run_qemu.sh ${workspaceFolder} debug",
             "isBackground": true,
             "problemMatcher": [
               {

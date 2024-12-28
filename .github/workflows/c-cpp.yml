@@ -22,5 +22,5 @@ jobs:
     - name: submodule_update
       run: git submodule update --init --recursive
     - name: build_all
-      run: ./misc/shell/rebuild_all.sh
+      run: ./shell/rebuild_all.sh
 
