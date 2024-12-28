@@ -1,4 +1,4 @@
-# 7_semaphore
+# 7_semaphore_challenge
 
 Implementation in [app.c](./app.c).
 
