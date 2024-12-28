@@ -9,7 +9,9 @@ demos="\
 5_queue \
 5_queue_challenge \
 6_mutex \
-6_mutex_challenge"
+6_mutex_challenge \
+7_semaphore \
+7_semaphore_challenge"
 
 getMacros()
 {
