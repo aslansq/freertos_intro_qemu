@@ -99,6 +99,10 @@ void demo_hw_led_set(uint8_t st) {
     _uart1_update();
 }
 
+void demo_hw_led_toggle(void) {
+    demo_hw_led_set(!__led_st);
+}
+
 // PROTECTED :)
 void demo_hw_init(void) {
     UART0_BAUDDIV = 16;

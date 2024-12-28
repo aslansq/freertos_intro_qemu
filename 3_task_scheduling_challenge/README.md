@@ -11,48 +11,8 @@ At highligted timestamp, I(the user) entered 100 ms request. You could see conte
 
 ## Terminal Output
 ```
-LED: 1
-Enter LED delay(ms): 
-
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-
+Enter LED delay(ms):
 Led delay updated to(ms): 100
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
-LED: 1
-LED: 0
 ```
 
 ## Notes

@@ -64,5 +64,10 @@ uint8_t demo_hw_led_get(void);
  */
 void demo_hw_led_set(uint8_t st);
 
+/**
+ * @brief toggle led
+ */
+void demo_hw_led_toggle(void);
+
 
 #endif // DEMO_HW
