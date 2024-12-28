@@ -1,6 +1,6 @@
-![all_builds](https://github.com/aslansq/freertos_qemu_vscode/actions/workflows/c-cpp.yml/badge.svg)
-# freertos_qemu_vscode
-FreeRTOS Qemu Demos in VSCode
+![all_builds](https://github.com/aslansq/freertos_intro_qemu/actions/workflows/c-cpp.yml/badge.svg)
+# freertos_intro_qemu
+FreeRTOS Introduction with Qemu in VSCode
 
 This repo implements concepts from Digi-Key FreeRTOS introduction.
 
