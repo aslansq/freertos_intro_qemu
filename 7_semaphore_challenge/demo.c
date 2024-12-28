@@ -32,7 +32,7 @@ static SemaphoreHandle_t app_ringBuf_mutex = NULL;
 static SemaphoreHandle_t app_ringBuf_semphr = NULL;
 static char app_ringBuf_buf[APP_RING_BUF_SIZE];
 
-void app_init(void) {
+void demo_init(void) {
     uint8_t i;
 
     ring_buffer_init(&app_ringBuf, app_ringBuf_buf, sizeof(app_ringBuf_buf));

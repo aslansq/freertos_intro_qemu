@@ -19,7 +19,7 @@ static void app_sendMsg(void * pvParameters);
 
 static QueueHandle_t xQueue1 = NULL;
 
-void app_init(void) {
+void demo_init(void) {
     xTaskCreate(app_printMsgs,
                 "print",
                 APP_DEFAULT_STACK_SIZE,

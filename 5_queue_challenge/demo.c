@@ -26,7 +26,7 @@ static QueueHandle_t xQueue2 = NULL;
 
 typedef uint16_t delay_t;
 
-void app_init(void) {
+void demo_init(void) {
     xTaskCreate(app_myTaskA,
                 "A",
                 APP_DEFAULT_STACK_SIZE,

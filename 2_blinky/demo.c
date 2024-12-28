@@ -13,7 +13,7 @@
 
 static void app_blinky(void * pvParameters);
 
-void app_init(void) {
+void demo_init(void) {
     /* Start the two tasks as described in the comments at the top of this
         * file. */
     xTaskCreate(app_blinky,                 /* The function that implements the task. */

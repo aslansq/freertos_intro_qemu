@@ -1,6 +1,6 @@
-#ifndef APP_H
-#define APP_H
+#ifndef DEMO_H
+#define DEMO_H
 
-void app_init(void);
+void demo_init(void);
 
-#endif // APP_H
+#endif // DEMO_H

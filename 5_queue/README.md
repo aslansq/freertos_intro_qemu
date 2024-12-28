@@ -29,6 +29,6 @@ Terminal output is:
 ```
 
 ## Notes
-Use app_init function in demo.c to implement your demo application.
+Use demo_init function in demo.c to implement your demo application.
 Run in debug console to dump the trace  
 -exec dump binary value trace.bin *RecorderDataPtr

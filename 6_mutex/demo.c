@@ -31,7 +31,7 @@ static int app_sharedVar = 0;
 static SemaphoreHandle_t app_sharedVar_mutex;
 #endif
 
-void app_init(void) {
+void demo_init(void) {
 #ifdef APP_DEMO_MUTEX
     app_sharedVar_mutex = xSemaphoreCreateMutex();
 #endif

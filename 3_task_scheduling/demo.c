@@ -26,7 +26,7 @@ static const char task1DelMsg[] = "Task1 deleted.";
 TaskHandle_t task_1 = NULL;
 TaskHandle_t task_2 = NULL;
 
-void app_init(void) {
+void demo_init(void) {
     xTaskCreate(startTask1,
                 "startTask1",
                 APP_DEFAULT_TASK_STACK_SIZE,

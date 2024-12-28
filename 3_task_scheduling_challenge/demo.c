@@ -19,7 +19,7 @@ static void taskLed(void *parameter);
 
 static int ledDelay = 1000;
 
-void app_init(void) {
+void demo_init(void) {
     xTaskCreate(taskInput,
                 "in",
                 APP_DEFAULT_TASK_STACK_SIZE,

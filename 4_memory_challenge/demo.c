@@ -17,7 +17,7 @@ uint8_t app_msgReadyFlag = 0;
 static void app_myTaskA( void * pvParameters );
 static void app_myTaskB( void * pvParameters );
 
-void app_init(void) {
+void demo_init(void) {
 
     xTaskCreate(app_myTaskA,
                 "A",

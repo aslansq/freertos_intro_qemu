@@ -71,7 +71,7 @@
  * required UART registers. */
 
 
-extern void app_init(void);
+extern void demo_init(void);
 /*
  * Only the comprehensive demo uses application hook (callback) functions.  See
  * https://www.FreeRTOS.org/a00016.html for more information.
@@ -95,7 +95,7 @@ void main( void )
     /* Hardware initialisation.  printf() output uses the UART for IO. */
     prvUARTInit();
 
-    app_init();
+    demo_init();
 }
 /*-----------------------------------------------------------*/
 

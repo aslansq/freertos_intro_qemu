@@ -17,7 +17,7 @@ static SemaphoreHandle_t app_binarySemphr = NULL;
 void setup(void * pvParameters);
 static void app_blinkLED(void * pvParameters);
 
-void app_init(void) {
+void demo_init(void) {
     xTaskCreate(setup,                      /* The function that implements the task. */
                 "s",                        /* The text name assigned to the task - for debug only as it is not used by the kernel. */
                 APP_BLINKY_TASK_STACK_SIZE, /* The size of the stack to allocate to the task. */

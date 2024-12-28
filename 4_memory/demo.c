@@ -44,7 +44,7 @@ static StaticTask_t app_myTaskA_buffer;
 static StackType_t app_myTaskA_stack[APP_DEFAULT_STACK_SIZE];
 #endif // APP_DEMO_6
 
-void app_init(void) {
+void demo_init(void) {
 
 #if APP_DEMO != APP_DEMO_6
     xTaskCreate(app_myTaskA,
