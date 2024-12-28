@@ -1,5 +1,5 @@
-#ifndef BASE_UART_H
-#define BASE_UART_H
+#ifndef MPS2_AN385_UART_H
+#define MPS2_AN385_UART_H
 
 #include <stdint.h>
 
@@ -35,18 +35,4 @@
 #define UART1_INT        ( *( ( ( volatile uint32_t * ) ( UART1_ADDRESS + UART_INT_OFFSET  ) ) ) )
 #define UART1_BAUDDIV    ( *( ( ( volatile uint32_t * ) ( UART1_ADDRESS + UART_BAUD_OFFSET ) ) ) )
 
-int uart0_readNonBlock(char *ptrBuffer, int bufferLen);
-int uart0_read(char *ptrBuffer, int bufferLen);
-/**
- * @retval -1 : if does not fit into buffer
- * @retval 0 to n : number of character read
- */
-int uart0_readLine(char *ptrBuffer, int bufferLen);
-/**
- * this has internal buffer of 100. not all the checks implemented since this is just demo code
- */
-uint8_t uart0_readU32(uint32_t *num);
-
-void uart1_print(char *str);
-
-#endif // BASE_UART_H
+#endif // MPS2_AN385_UART_H

@@ -4,13 +4,7 @@ Implementation in [demo.c](./demo.c).
 
 ## Terminal Output
 ```
-Blinky: 1
-Blinky: 0
-Blinky: 1
-Blinky: 0
-Blinky: 1
-Blinky: 0
-Blinky: 1
+led: 0
 ```
 ## Notes
 Use demo_init function in demo.c to implement your demo application.

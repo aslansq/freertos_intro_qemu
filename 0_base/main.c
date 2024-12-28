@@ -53,7 +53,8 @@
 /* Standard includes. */
 #include <stdio.h>
 #include <string.h>
-#include "uart.h"
+#include "mps2_an385_uart.h"
+#include "demo_hw.h"
 
 /* This project provides two demo applications.  A simple blinky style demo
  * application, and a more comprehensive test and demo application.  The
@@ -72,17 +73,13 @@
 
 
 extern void demo_init(void);
+extern void demo_hw_init(void);
 /*
  * Only the comprehensive demo uses application hook (callback) functions.  See
  * https://www.FreeRTOS.org/a00016.html for more information.
  */
 void vFullDemoTickHookFunction( void );
 void vFullDemoIdleFunction( void );
-
-/*
- * Printf() output is sent to the serial port.  Initialise the serial hardware.
- */
-static void prvUARTInit( void );
 
 /*-----------------------------------------------------------*/
 
@@ -93,7 +90,7 @@ void main( void )
      * instructions. */
 
     /* Hardware initialisation.  printf() output uses the UART for IO. */
-    prvUARTInit();
+    demo_hw_init();
 
     demo_init();
 }
@@ -258,15 +255,6 @@ void vApplicationGetTimerTaskMemory( StaticTask_t ** ppxTimerTaskTCBBuffer,
      * Note that, as the array is necessarily of type StackType_t,
      * configMINIMAL_STACK_SIZE is specified in words, not bytes. */
     *pulTimerTaskStackSize = configTIMER_TASK_STACK_DEPTH;
-}
-/*-----------------------------------------------------------*/
-
-static void prvUARTInit( void )
-{
-    UART0_BAUDDIV = 16;
-    UART0_CTRL = ( UART0_CTRL_TX_EN | UART0_CTRL_RX_EN );
-    UART1_BAUDDIV = 16;
-    UART1_CTRL = UART0_CTRL_TX_EN;
 }
 /*-----------------------------------------------------------*/
 

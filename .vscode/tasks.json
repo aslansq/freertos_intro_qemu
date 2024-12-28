@@ -6,7 +6,7 @@
           {
             "label": "RunQemu_2_blinky",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/2_blinky debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/2_blinky debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -29,7 +29,7 @@
           {
             "label": "RunQemu_3_task_scheduling",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/3_task_scheduling debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/3_task_scheduling debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -52,7 +52,7 @@
           {
             "label": "RunQemu_3_task_scheduling_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/3_task_scheduling_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/3_task_scheduling_challenge debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -75,7 +75,7 @@
           {
             "label": "RunQemu_4_memory",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/4_memory debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/4_memory debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -98,7 +98,7 @@
           {
             "label": "RunQemu_4_memory_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/4_memory_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/4_memory_challenge debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -121,7 +121,7 @@
           {
             "label": "RunQemu_5_queue",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/5_queue debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/5_queue debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -144,7 +144,7 @@
           {
             "label": "RunQemu_5_queue_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/5_queue_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/5_queue_challenge debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -167,7 +167,7 @@
           {
             "label": "RunQemu_6_mutex",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/6_mutex debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/6_mutex debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -190,7 +190,7 @@
           {
             "label": "RunQemu_6_mutex_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/6_mutex_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/6_mutex_challenge debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -213,7 +213,7 @@
           {
             "label": "RunQemu_7_semaphore",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/7_semaphore debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/7_semaphore debug",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -236,7 +236,7 @@
           {
             "label": "RunQemu_7_semaphore_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/build_run_qemu.sh ${workspaceFolder}/7_semaphore_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/7_semaphore_challenge debug",
             "isBackground": true,
             "problemMatcher": [
               {

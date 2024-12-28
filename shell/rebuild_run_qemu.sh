@@ -12,7 +12,7 @@ thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
 
-${thisDirPath}/build.sh "${demoPath}"
+${thisDirPath}/rebuild.sh "${demoPath}"
 
 if [ $? != 0 ]; then
     echoerr "compilation failure"
