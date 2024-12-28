@@ -12,7 +12,7 @@
 #define APP_BLINKY_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
 #define APP_BLINKY_TASK_STACK_SIZE 1024
 
-static SemaphoreHandle_t app_mutex = NULL;
+static SemaphoreHandle_t app_binarySemphr = NULL;
 
 void setup(void * pvParameters);
 static void app_blinkLED(void * pvParameters);
@@ -43,13 +43,12 @@ void setup(void * pvParameters) {
              * If the mutex is held by a task then it cannot be given from an
              * interrupt, and if a mutex is given by the holding task then it must
              * be the running state task. */
-    // app_mutex = xSemaphoreCreateMutex();
+    // app_binarySemphr = xSemaphoreCreateMutex();
 
     // so semaphore used to solve this challenge
-    app_mutex = xSemaphoreCreateBinary();
+    app_binarySemphr = xSemaphoreCreateBinary();
     uint32_t delay = 1000;
 
-    xSemaphoreTake(app_mutex, 5);
     printf("Enter delay: ");
     uart0_readU32(&delay);
     printf("\nDelay set to %d\n", (int)delay);
@@ -61,13 +60,15 @@ void setup(void * pvParameters) {
                 APP_BLINKY_TASK_PRIORITY,   /* The priority assigned to the task. */
                 NULL );                     /* The task handle is not required, so NULL is passed. */
 
-    xSemaphoreTake(app_mutex, 5);
-    xSemaphoreGive(app_mutex);
+    // wait until you take
+    while(xSemaphoreTake(app_binarySemphr, 5) != pdTRUE)
+        ;
+    printf("setup done\n");
     vTaskDelete(NULL);
 }
 
 static void app_blinkLED( void * pvParameters ) {
-    if(app_mutex == NULL ||
+    if(app_binarySemphr == NULL ||
        pvParameters == NULL) {
         printf("null checks fail");
         while(1)
@@ -76,7 +77,7 @@ static void app_blinkLED( void * pvParameters ) {
     static uint8_t led_st = 0;
     uint32_t delay = 100;
     delay = *((uint32_t *) pvParameters);
-    xSemaphoreGive(app_mutex);
+    xSemaphoreGive(app_binarySemphr);
     for( ;; ) {
         vTaskDelay( pdMS_TO_TICKS( delay ) );
         led_st = !led_st;
