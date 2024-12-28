@@ -21,7 +21,7 @@ void demo_hw_term_writeChar(char c) {
     UART0_DATA = c;
 }
 
-void demo_hw_term_write(char *buf) {
+void demo_hw_term_write(const char *const buf) {
     uint8_t idx  = 0;
     while(buf[idx] != '\0') {
         demo_hw_term_writeChar(buf[idx]);
@@ -29,7 +29,7 @@ void demo_hw_term_write(char *buf) {
     }
 }
 
-void demo_hw_term_writeLine(char *buf) {
+void demo_hw_term_writeLine(const char *const buf) {
     demo_hw_term_write(buf);
     demo_hw_term_writeChar('\n');
     demo_hw_term_writeChar('\r');

@@ -13,12 +13,12 @@ void demo_hw_term_writeChar(char u8);
 /**
  * @brief writes null terminated buffer to stdout of your terminal
  */
-void demo_hw_term_write(char *buf);
+void demo_hw_term_write(const char *const buf);
 
 /**
  * @brief writes null terminated buffer with newline to stdout of your terminal
  */
-void demo_hw_term_writeLine(char *buf);
+void demo_hw_term_writeLine(const char *const buf);
 
 /**
  * @brief read byte from stdin of your terminal
