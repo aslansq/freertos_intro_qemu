@@ -300,4 +300,7 @@
     "0_base/misc/FreeRTOS/FreeRTOS/Source/portable/GCC/TriCore_1782":true,
     "0_base/misc/FreeRTOS/FreeRTOS/Test":true,
   },
+  "files.associations": {
+    "typeinfo": "c"
+  },
 }
