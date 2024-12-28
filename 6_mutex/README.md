@@ -1,6 +1,6 @@
 # 6_mutex
 
-Implementation in [app.c](./app.c).
+Implementation in [demo.c](./demo.c).
 
 Two demos available. Pass one of the arguments to CMake.
 ```
@@ -47,6 +47,6 @@ char device redirected to /dev/pts/1 (label serial1)
 ```
 
 ## Notes
-Use app_init function in app.c to implement your demo application.
+Use app_init function in demo.c to implement your demo application.
 Run in debug console to dump the trace  
 -exec dump binary value trace.bin *RecorderDataPtr

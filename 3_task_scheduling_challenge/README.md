@@ -1,6 +1,6 @@
 # 3_task_scheduling
 
-Implementation in [app.c](./app.c).
+Implementation in [demo.c](./demo.c).
 
 ```Please ignore race conditions for now```
 
@@ -56,6 +56,6 @@ LED: 0
 ```
 
 ## Notes
-Use app_init function in app.c to implement your demo application.
+Use app_init function in demo.c to implement your demo application.
 Run in debug console to dump the trace  
 -exec dump binary value trace.bin *RecorderDataPtr

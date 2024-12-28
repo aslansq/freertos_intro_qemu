@@ -1,6 +1,6 @@
 # 4_memory
 
-Implementation in [app.c](./app.c).
+Implementation in [demo.c](./demo.c).
 
 [Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)
 
@@ -36,6 +36,6 @@ Stack overflow in A
 ```
 
 ## Notes
-Use app_init function in app.c to implement your demo application.
+Use app_init function in demo.c to implement your demo application.
 Run in debug console to dump the trace  
 -exec dump binary value trace.bin *RecorderDataPtr
