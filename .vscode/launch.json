@@ -136,5 +136,16 @@
             "stopAtEntry": true,
             "preLaunchTask": "RunQemu_8_sw_timers"
         },
+        {
+            "name": "Launch_QEMU_8_sw_timers_challenge",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/8_sw_timers_challenge/build/demo",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "RunQemu_8_sw_timers_challenge"
+        },
     ]
 }
