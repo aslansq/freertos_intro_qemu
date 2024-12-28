@@ -8,7 +8,8 @@ demos="\
 4_memory_challenge \
 5_queue \
 5_queue_challenge \
-6_mutex"
+6_mutex \
+6_mutex_challenge"
 
 getMacros()
 {
