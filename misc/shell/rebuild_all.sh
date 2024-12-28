@@ -5,6 +5,8 @@ thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
 prjRootPath=$(realpath "${thisDirPath}/../..") # This is the root path of the project
 
+note=""
+
 for demo in ${demos}
 do
     macros=$(getMacros "${demo}")
@@ -18,6 +20,7 @@ do
             echoerr "build ${demo} failure"
             ungracefulExit
         else
+            note="$note\nbuild ${demo} success"
             echo "build ${demo} success"
             echo "========================================"
         fi
@@ -32,11 +35,12 @@ do
                 echoerr "build ${demo} with ${macro} failure"
                 ungracefulExit
             else
+                note="$note\nbuild ${demo} with ${macro} success"
                 echo "build ${demo} with ${macro} success"
                 echo "========================================"
             fi
         done
     fi
 done
-
+echo -e "$note\n"
 echo "All demos rebuilt successfully!"
