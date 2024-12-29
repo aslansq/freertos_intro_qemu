@@ -19,30 +19,30 @@ typedef struct {
     uint8_t numOfSend;
 } producerHandle_T;
 
-static producerHandle_T __producerHandles[NUM_OF_PRODUCERS];
+static producerHandle_T _producerHandles[NUM_OF_PRODUCERS];
 
-static ring_buffer_t __ringBuf;
-static SemaphoreHandle_t __ringBuf_mutex = NULL;
-static SemaphoreHandle_t __ringBuf_semphr = NULL;
-static char __ringBuf_buf[RING_BUF_SIZE];
+static ring_buffer_t _ringBuf;
+static SemaphoreHandle_t _ringBuf_mutex = NULL;
+static SemaphoreHandle_t _ringBuf_semphr = NULL;
+static char _ringBuf_buf[RING_BUF_SIZE];
 
 void demo_init(void) {
     uint8_t i;
 
-    ring_buffer_init(&__ringBuf, __ringBuf_buf, sizeof(__ringBuf_buf));
-    __ringBuf_mutex = xSemaphoreCreateMutex();
-    __ringBuf_semphr = xSemaphoreCreateCounting(RING_BUF_SIZE, 0);
+    ring_buffer_init(&_ringBuf, _ringBuf_buf, sizeof(_ringBuf_buf));
+    _ringBuf_mutex = xSemaphoreCreateMutex();
+    _ringBuf_semphr = xSemaphoreCreateCounting(RING_BUF_SIZE, 0);
 
     for(i = 0; i < NUM_OF_PRODUCERS; ++i) {
         char taskName[2];
         taskName[0] = '0' + i;
         taskName[1] = '\0';
-        __producerHandles[i].nameChar = '0' + i;
-        __producerHandles[i].numOfSend = 0;
+        _producerHandles[i].nameChar = '0' + i;
+        _producerHandles[i].numOfSend = 0;
         xTaskCreate(_producerTask,           /* The function that implements the task. */
                     taskName,                /* The text name assigned to the task - for debug only as it is not used by the kernel. */
                     DEFAULT_TASK_STACK_SIZE, /* The size of the stack to allocate to the task. */
-                    &(__producerHandles[i]), /* The parameter passed to the task */
+                    &(_producerHandles[i]), /* The parameter passed to the task */
                     DEFAULT_TASK_PRIORITY,   /* The priority assigned to the task. */
                     NULL );                  /* The task handle is not required, so NULL is passed. */
     }
@@ -70,23 +70,23 @@ void demo_init(void) {
 
 void _consumerTask(void *pvParameters) {
     // null pointer checks
-    if(__ringBuf_mutex == NULL ||
-       __ringBuf_semphr == NULL) {
+    if(_ringBuf_mutex == NULL ||
+       _ringBuf_semphr == NULL) {
         while(1)
             ;
     }
     char c;
 
     for( ; ; ) {
-        if(xSemaphoreTake(__ringBuf_semphr, 0) == pdTRUE) {
+        if(xSemaphoreTake(_ringBuf_semphr, 0) == pdTRUE) {
             // wait until you get ringBuf access
-            while(xSemaphoreTake(__ringBuf_mutex, 0) != pdTRUE)
+            while(xSemaphoreTake(_ringBuf_mutex, 0) != pdTRUE)
                 ;
-            // it is not possible that buffer is empty due __ringBuf_semphr
-            ring_buffer_dequeue(&__ringBuf, &c);
+            // it is not possible that buffer is empty due _ringBuf_semphr
+            ring_buffer_dequeue(&_ringBuf, &c);
             demo_hw_term_writeChar(c);
             demo_hw_term_writeChar('\n');
-            xSemaphoreGive(__ringBuf_mutex);
+            xSemaphoreGive(_ringBuf_mutex);
         }
     }
 }
@@ -94,8 +94,8 @@ void _consumerTask(void *pvParameters) {
 void _producerTask(void *pvParameters) {
     // null pointer checks
     if(pvParameters == NULL ||
-       __ringBuf_mutex == NULL ||
-       __ringBuf_semphr == NULL) {
+       _ringBuf_mutex == NULL ||
+       _ringBuf_semphr == NULL) {
         while(1)
             ;
     }
@@ -106,16 +106,16 @@ void _producerTask(void *pvParameters) {
         if(producerHandlePtr->numOfSend >= 3) {
             // already achieved our goal
             break;
-        } if(xSemaphoreTake(__ringBuf_mutex, 0) != pdTRUE) {
+        } if(xSemaphoreTake(_ringBuf_mutex, 0) != pdTRUE) {
             // do nothing if I can not get access
-        } else if(ring_buffer_is_full(&__ringBuf)) {
+        } else if(ring_buffer_is_full(&_ringBuf)) {
             // if it is full just release
-            xSemaphoreGive(__ringBuf_mutex);
+            xSemaphoreGive(_ringBuf_mutex);
         } else {
-            ring_buffer_queue(&__ringBuf, producerHandlePtr->nameChar);
+            ring_buffer_queue(&_ringBuf, producerHandlePtr->nameChar);
             producerHandlePtr->numOfSend++;
-            xSemaphoreGive(__ringBuf_semphr);
-            xSemaphoreGive(__ringBuf_mutex);
+            xSemaphoreGive(_ringBuf_semphr);
+            xSemaphoreGive(_ringBuf_mutex);
         }
     }
 

@@ -7,11 +7,11 @@
 #define DEFAULT_TASK_LOOP_PRIORITY (tskIDLE_PRIORITY + 1)
 #define DEFAULT_TASK_STACK_SIZE    (1024u)
 
-static void blinkTask(void * pvParameters);
+static void _blinkTask(void * pvParameters);
 
 void demo_init(void) {
     xTaskCreate(
-        blinkTask,                  // pvTaskCode
+        _blinkTask,                  // pvTaskCode
         "blink",                    // pcName
         DEFAULT_TASK_STACK_SIZE,    // uxStackDepth
         NULL,                       // pvParameters
@@ -26,7 +26,7 @@ void demo_init(void) {
     }
 }
 
-static void blinkTask( void * pvParameters ) {
+static void _blinkTask( void * pvParameters ) {
     /* Prevent the compiler warning about the unused parameter. */
     (void)pvParameters;
     static uint8_t ledSt = 0;

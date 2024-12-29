@@ -7,7 +7,7 @@
 #define DEFAULT_STACK_SIZE (1024u)
 
 static void _incTask(void * pvParameters);
-static int __sharedVar = 0;
+static int _sharedVar = 0;
 
 void demo_init(void) {
 
@@ -46,10 +46,10 @@ static void _incTask(void * pvParameters) {
     int ranDurOfOp = 0;
     for( ; ; ) {
         ranDurOfOp = _myRand();
-        localVar = __sharedVar;
+        localVar = _sharedVar;
         localVar++;
         vTaskDelay( pdMS_TO_TICKS( ranDurOfOp ) );
-        __sharedVar = localVar;
-        demo_hw_term_printf("%d\n", __sharedVar);
+        _sharedVar = localVar;
+        demo_hw_term_printf("%d\n", _sharedVar);
     }
 }

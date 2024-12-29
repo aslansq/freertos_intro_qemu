@@ -11,7 +11,9 @@ demos="\
 6_mutex \
 6_mutex_challenge \
 7_semaphore \
-7_semaphore_challenge"
+7_semaphore_challenge \
+8_sw_timers \
+8_sw_timers_challenge"
 
 getMacros()
 {

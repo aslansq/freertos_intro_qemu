@@ -12,7 +12,7 @@
 
 static void _uart1_update(void);
 
-static uint8_t __led_st = 0;
+static uint8_t _led_st = 0;
 
 // PUBLIC
 
@@ -104,16 +104,16 @@ int16_t demo_hw_term_readLine(char *buf, uint8_t len) {
 }
 
 uint8_t demo_hw_led_get(void) {
-    return __led_st;
+    return _led_st;
 }
 
 void demo_hw_led_set(uint8_t st) {
-    __led_st = (st == 0) ? 0 : 1;
+    _led_st = (st == 0) ? 0 : 1;
     _uart1_update();
 }
 
 void demo_hw_led_toggle(void) {
-    demo_hw_led_set(!__led_st);
+    demo_hw_led_set(!_led_st);
 }
 
 // PROTECTED :)
@@ -133,7 +133,7 @@ void demo_hw_init(void) {
 static void _uart1_update(void) {
     static char uart1_buf[] = "led : 0\r";
     static char *ledStPtr = &uart1_buf[6];
-    *ledStPtr = (__led_st) ? '1' : '0';
+    *ledStPtr = (_led_st) ? '1' : '0';
     uint8_t idx = 0;
     while(uart1_buf[idx] != '\0') {
         UART1_TX_WAIT();

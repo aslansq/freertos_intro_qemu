@@ -10,7 +10,7 @@
 #define BLINK_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
 #define BLINK_TASK_STACK_SIZE 1024
 
-static SemaphoreHandle_t __binarySemphr = NULL;
+static SemaphoreHandle_t _binSemphr = NULL;
 
 void _setup(void * pvParameters);
 static void _blinkLED(void * pvParameters);
@@ -42,10 +42,10 @@ void _setup(void * pvParameters) {
              * If the mutex is held by a task then it cannot be given from an
              * interrupt, and if a mutex is given by the holding task then it must
              * be the running state task. */
-    // __binarySemphr = xSemaphoreCreateMutex();
+    // _binSemphr = xSemaphoreCreateMutex();
 
     // so semaphore used to solve this challenge
-    __binarySemphr = xSemaphoreCreateBinary();
+    _binSemphr = xSemaphoreCreateBinary();
     uint32_t delay = 1000;
 
     demo_hw_term_write("Enter delay: ");
@@ -61,14 +61,14 @@ void _setup(void * pvParameters) {
                 NULL );                     /* The task handle is not required, so NULL is passed. */
 
     // wait until you take
-    while(xSemaphoreTake(__binarySemphr, 5) != pdTRUE)
+    while(xSemaphoreTake(_binSemphr, 5) != pdTRUE)
         ;
     demo_hw_term_writeLine("_setup done");
     vTaskDelete(NULL);
 }
 
 static void _blinkLED( void * pvParameters ) {
-    if(__binarySemphr == NULL ||
+    if(_binSemphr == NULL ||
        pvParameters == NULL) {
         demo_hw_term_writeLine("null checks fail");
         while(1)
@@ -76,7 +76,7 @@ static void _blinkLED( void * pvParameters ) {
     }
     uint32_t delay = 100;
     delay = *((uint32_t *) pvParameters);
-    xSemaphoreGive(__binarySemphr);
+    xSemaphoreGive(_binSemphr);
     for( ;; ) {
         vTaskDelay( pdMS_TO_TICKS( delay ) );
         demo_hw_led_toggle();

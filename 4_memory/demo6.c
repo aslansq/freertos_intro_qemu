@@ -12,8 +12,8 @@
 static void _taskA( void * pvParameters );
 
 /* Structure that will hold the TCB of the task being created. */
-static StaticTask_t __taskA_buffer;
-static StackType_t  __taskA_stack[DEFAULT_STACK_SIZE];
+static StaticTask_t _taskA_buffer;
+static StackType_t  _taskA_stack[DEFAULT_STACK_SIZE];
 
 void demo_init(void) {
 
@@ -23,8 +23,8 @@ void demo_init(void) {
                 DEFAULT_STACK_SIZE,
                 NULL,
                 DEFAULT_PRIORITY,
-                __taskA_stack,
-                &__taskA_buffer );
+                _taskA_stack,
+                &_taskA_buffer );
 
     vTaskStartScheduler();
 

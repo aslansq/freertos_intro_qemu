@@ -10,7 +10,7 @@
 
 #define NUM_OF_PRINT_MSG_TASK (5u)
 
-static SemaphoreHandle_t __semphr = NULL;
+static SemaphoreHandle_t _semphr = NULL;
 
 void _setup(void * pvParameters);
 static void _printMsg(void * pvParameters);
@@ -38,7 +38,7 @@ void _setup(void * pvParameters) {
     char taskNames[NUM_OF_PRINT_MSG_TASK][2] = {"A", "B", "C", "D", "E"};
     uint8_t i;
 
-    __semphr = xSemaphoreCreateCounting(NUM_OF_PRINT_MSG_TASK, 0);
+    _semphr = xSemaphoreCreateCounting(NUM_OF_PRINT_MSG_TASK, 0);
 
     for(i = 0; i < NUM_OF_PRINT_MSG_TASK; ++i) {
         xTaskCreate(_printMsg,               /* The function that implements the task. */
@@ -50,7 +50,7 @@ void _setup(void * pvParameters) {
     }
 
     for(i = 0; i < NUM_OF_PRINT_MSG_TASK; ++i) {
-        while(xSemaphoreTake(__semphr, 5) != pdTRUE)
+        while(xSemaphoreTake(_semphr, 5) != pdTRUE)
             ;
     }
 
@@ -59,7 +59,7 @@ void _setup(void * pvParameters) {
 }
 
 static void _printMsg( void * pvParameters ) {
-    if(__semphr == NULL ||
+    if(_semphr == NULL ||
        pvParameters == NULL) {
         demo_hw_term_writeLine("null checks fail");
         while(1)
@@ -68,6 +68,6 @@ static void _printMsg( void * pvParameters ) {
     char msg[100];
     strcpy(msg, (char *)pvParameters);
     demo_hw_term_printf("%s", msg);
-    xSemaphoreGive(__semphr);
+    xSemaphoreGive(_semphr);
     vTaskDelete(NULL);
 }
