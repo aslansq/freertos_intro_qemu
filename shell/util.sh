@@ -16,12 +16,12 @@ demos="\
 getMacros()
 {
     demo_4_memory_macros="\
-    -DAPP_DEMO=1\
-    -DAPP_DEMO=2\
-    -DAPP_DEMO=3\
-    -DAPP_DEMO=4\
-    -DAPP_DEMO=5\
-    -DAPP_DEMO=6\
+    -DDEMO_1_C:BOOL=ON\
+    -DDEMO_2_C:BOOL=ON\
+    -DDEMO_3_C:BOOL=ON\
+    -DDEMO_4_C:BOOL=ON\
+    -DDEMO_5_C:BOOL=ON\
+    -DDEMO_6_C:BOOL=ON\
     "
 
     demo_6_mutex_macros="\

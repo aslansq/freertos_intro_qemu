@@ -1,6 +1,12 @@
 {
     "files.associations": {
         "uart.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "freertos.h": "c",
+        "demo.h": "c",
+        "stdint.h": "c",
+        "task.h": "c",
+        "demo_hw.h": "c",
+        "stdarg.h": "c"
     }
 }
