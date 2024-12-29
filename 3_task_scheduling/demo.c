@@ -56,7 +56,6 @@ static void _slowTermWriteLine(const char *s) {
         _slowTermWriteChar(s[i]);
     }
     demo_hw_term_writeChar('\n');
-    demo_hw_term_writeChar('\r');
 }
 
 
