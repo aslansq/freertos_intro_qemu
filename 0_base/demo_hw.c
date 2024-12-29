@@ -28,6 +28,10 @@ void demo_hw_term_printf(const char *format, ...) {
 void demo_hw_term_writeChar(char c) {
     UART0_TX_WAIT();
     UART0_DATA = c;
+    if(c == '\n') {
+        UART0_TX_WAIT();
+        UART0_DATA = '\r';
+    }
 }
 
 void demo_hw_term_write(const char *const buf) {
