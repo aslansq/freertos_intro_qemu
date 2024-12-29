@@ -1,7 +1,5 @@
 # 7_semaphore_challenge
 
-Implementation in [demo.c](./demo.c).
-
 [Introduction to RTOS Part 7 - Semaphore](https://www.youtube.com/watch?v=5JcMtbA9QEE&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=7)
 
 Interesting trace to see how some producers take longer than others because they wait for semaphore or mutex.

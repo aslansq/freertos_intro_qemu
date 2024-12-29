@@ -1,7 +1,5 @@
 # 6_mutex_challenge
 
-Implementation in [demo.c](./demo.c).
-
 Challenge of [Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)
 
 On the video he says this hack.

@@ -1,6 +1,6 @@
 # 2_blinky
 
-Implementation in [demo.c](./demo.c).
+Blinks every 1 second.
 
 ## Terminal Output
 ```

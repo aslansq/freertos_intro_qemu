@@ -1,7 +1,5 @@
 # 4_memory
 
-Implementation in [demo.c](./demo.c).
-
 [Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)
 
 This file demonstrates memory management in FreeRTOS

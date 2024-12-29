@@ -1,7 +1,5 @@
 # 6_mutex
 
-Implementation in [demo.c](./demo.c).
-
 Two demos available. Pass one of the arguments to CMake.
 ```
 demo_mutex.c

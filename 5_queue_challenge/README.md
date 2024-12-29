@@ -1,6 +1,4 @@
-# 5_queue
-
-Implementation in [demo.c](./demo.c).
+# 5_queue_challenge
 
 Challenge of [Introduction to RTOS Part 5 - Queue](https://www.youtube.com/watch?v=pHJ3lxOoWeI&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=5)
 
