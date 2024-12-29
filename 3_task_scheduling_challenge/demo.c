@@ -49,6 +49,7 @@ static void _taskInput( void * parameter ) {
             inledDelay = atoi(buf);
             _ledDelay = inledDelay;
             demo_hw_term_printf("Led delay updated to(ms): %d", _ledDelay);
+            demo_hw_term_writeChar('\n');
         }
     }
 }

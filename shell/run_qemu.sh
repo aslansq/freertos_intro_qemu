@@ -1,18 +1,21 @@
 #!/bin/bash
-# This script is used to run a demo
-# Usage: ./run_qemu.sh <demo binary file> <optional: debug>
-demo="$1"
+# This script is used to run a demoBin
+# Usage: ./run_qemu.sh <demoBin binary file> <optional: debug>
+demoBin="$1"
 debug="$2"
 
 thisPath=$(realpath "$0")
 thisDirPath=$(dirname "$thisPath")
 source "${thisDirPath}/util.sh"
 
-if [ ! -f "$demo" ]
+if [ ! -f "$demoBin" ]
 then
-    echoerr "Demo binary does not exist: $demo"
+    echoerr "demoBin binary does not exist: $demoBin"
     ungracefulExit
 fi
+
+buildPath=$(dirname "${demoBin}")
+logFile=${buildPath}/log.txt
 
 debugFlags=""
 
@@ -28,5 +31,11 @@ else
     ungracefulExit
 fi
 
+if [ -z ${FREERTOS_INTRO_QEMU_TERM} ]
+then
 echo CONNECT below serial port to see simulated hardware:
-qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demo" -monitor none -nographic -serial stdio -serial pty $debugFlags
+qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demoBin" -monitor none -nographic -serial stdio -serial pty $debugFlags | tee ${logFile}
+else
+${FREERTOS_INTRO_QEMU_TERM} -- bash -c "${thisDirPath}/screen_hw.sh ${logFile}"
+qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demoBin" -monitor none -nographic -serial stdio -serial pty $debugFlags | tee ${logFile}
+fi
