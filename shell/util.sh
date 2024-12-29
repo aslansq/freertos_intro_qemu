@@ -25,8 +25,8 @@ getMacros()
     "
 
     demo_6_mutex_macros="\
-    -DAPP_DEMO_RACE:BOOL=ON\
-    -DAPP_DEMO_MUTEX:BOOL=ON\
+    -DDEMO_RACE_C:BOOL=ON\
+    -DDEMO_MUTEX_C:BOOL=ON\
     "
 
     demo="$1"
