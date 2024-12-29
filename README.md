@@ -37,14 +37,14 @@ You dont have hardware and you dont care about any specific hardware but learnin
 ## Manual Build and Run QEMU
 Use the scripts under ```shell```
 Examples:  
-```./shell/rebuild_run_qemu.sh 9_hw_int_challenge/```
-```./shell/rebuild.sh 9_hw_int_challenge/```
+```./shell/rebuild_run_qemu.sh 9_hw_int_challenge/```  
+```./shell/rebuild.sh 9_hw_int_challenge/```  
 ```./shell/rebuild_all.sh```
 
 ## Tip
 If you make environment variable FREERTOS_INTRO_QEMU_TERM, it will try to launch and connect serial hardware display.  
 Tested with gnome-terminal. In case something fails see the err.txt under build folder.
-Example
+Example  
 ```export FREERTOS_INTRO_QEMU_TERM=gnome-terminal```
 
 ## Versions
