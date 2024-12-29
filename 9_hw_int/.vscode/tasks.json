@@ -6,12 +6,12 @@
           {
             "label": "Clean_Build",
             "type": "shell",
-            "command": "${workspaceFolder}/../shell/rebuild.sh ${workspaceFolder}"
+            "command": "${workspaceFolder}/../shell/rebuild.sh ${workspaceFolder} -DDEMO_ADC_C:BOOL=ON"
           },
           {
             "label": "Run_QEMU",
             "type": "shell",
-            "command": "${workspaceFolder}/../shell/rebuild_run_qemu.sh ${workspaceFolder} debug",
+            "command": "${workspaceFolder}/../shell/rebuild_run_qemu.sh ${workspaceFolder} debug -DDEMO_ADC_C:BOOL=ON",
             "isBackground": true,
             "problemMatcher": [
               {

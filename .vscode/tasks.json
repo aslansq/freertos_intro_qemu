@@ -98,7 +98,7 @@
           {
             "label": "RunQemu_4_memory_challenge",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/4_memory_challenge debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/4_memory_challenge debug -DDEMO_1_C:BOOL=ON",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -167,7 +167,7 @@
           {
             "label": "RunQemu_6_mutex",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/6_mutex debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/6_mutex debug -DDEMO_MUTEX_C:BOOL=ON",
             "isBackground": true,
             "problemMatcher": [
               {
@@ -305,7 +305,7 @@
           {
             "label": "RunQemu_9_hw_int",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/9_hw_int debug",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/9_hw_int debug -DDEMO_ADC_C:BOOL=ON",
             "isBackground": true,
             "problemMatcher": [
               {

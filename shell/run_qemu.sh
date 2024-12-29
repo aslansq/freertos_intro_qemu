@@ -19,6 +19,7 @@ debugFlags=""
 if [ "$debug" == "debug" ]
 then
     debugFlags="-s -S"
+    echo QEMU_DEBUG_MODE
 elif [ "$debug" == "" ]
 then
     debugFlags=""
