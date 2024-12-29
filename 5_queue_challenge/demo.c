@@ -17,8 +17,8 @@ static void _handleUserIn(void);
 static void _taskA(void * pvParameters);
 static void _taskB(void * pvParameters);
 
-static QueueHandle_t __xQueue1 = NULL;
-static QueueHandle_t __xQueue2 = NULL;
+static QueueHandle_t _xQueue1 = NULL;
+static QueueHandle_t _xQueue2 = NULL;
 
 typedef uint16_t delay_t;
 
@@ -38,15 +38,15 @@ void demo_init(void) {
                 NULL );
 
     // can hold 10 int32_t
-    __xQueue1 = xQueueCreate( 10, sizeof( delay_t ) );
-    __xQueue2 = xQueueCreate( MSG_BUF_SIZE, sizeof( char ) );
+    _xQueue1 = xQueueCreate( 10, sizeof( delay_t ) );
+    _xQueue2 = xQueueCreate( MSG_BUF_SIZE, sizeof( char ) );
 
-    if(__xQueue1 == NULL) {
-        demo_hw_term_writeLine("__xQueue1 null");
+    if(_xQueue1 == NULL) {
+        demo_hw_term_writeLine("_xQueue1 null");
     }
 
-    if(__xQueue2 == NULL) {
-        demo_hw_term_writeLine("__xQueue2 null");
+    if(_xQueue2 == NULL) {
+        demo_hw_term_writeLine("_xQueue2 null");
     }
 
     /* Start the tasks and timer running. */
@@ -63,10 +63,10 @@ static void _printMsgsFromQ2(void) {
     BaseType_t recvRet; // receive return value
     char c;
 
-    if(__xQueue2 == NULL) {
+    if(_xQueue2 == NULL) {
         // do nothing
     } else {
-        recvRet = xQueueReceive(__xQueue2, (void *)&c, (TickType_t)0);
+        recvRet = xQueueReceive(_xQueue2, (void *)&c, (TickType_t)0);
         if(recvRet != pdTRUE) {
             // do nothing
         } else if(msgIdx >= MSG_BUF_SIZE) {
@@ -111,8 +111,8 @@ static void _handleUserIn(void) {
             sscanf(userIn, "delay %d", &delay);
             if(delay >= 1) {
                 delay_t delayT = (delay_t)delay;
-                if(__xQueue1 != NULL) {
-                    xQueueSend(__xQueue1, (void *)&delayT, (TickType_t)10);
+                if(_xQueue1 != NULL) {
+                    xQueueSend(_xQueue1, (void *)&delayT, (TickType_t)10);
                 }
             } else {
                 demo_hw_term_writeLine("ignored");
@@ -145,8 +145,8 @@ static void _taskB( void * pvParameters ) {
     uint16_t i;
 
     for( ; ; ) {
-        if(__xQueue1 != NULL) {
-            recvRet = xQueueReceive(__xQueue1, (void *)&tempDelayT, (TickType_t)0);
+        if(_xQueue1 != NULL) {
+            recvRet = xQueueReceive(_xQueue1, (void *)&tempDelayT, (TickType_t)0);
         }
         if(recvRet != pdTRUE) {
             // do nothing
@@ -157,7 +157,7 @@ static void _taskB( void * pvParameters ) {
         demo_hw_led_toggle();
 
         // no need to execute below lines if q2 does not exist
-        if(__xQueue2 == NULL) {
+        if(_xQueue2 == NULL) {
             continue;
         }
 
@@ -165,7 +165,7 @@ static void _taskB( void * pvParameters ) {
         if(nth == BLINKED_MSG_EVERY_NTH) {
             nth = 0;
             for(i = 0; i < (sizeof(msg)/sizeof(char)); ++i) {
-                xQueueSend(__xQueue2, (void *)&msg[i], (TickType_t)10);
+                xQueueSend(_xQueue2, (void *)&msg[i], (TickType_t)10);
             }
         }
     }

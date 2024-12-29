@@ -14,8 +14,8 @@ static void _task2(void *parameter);
 static void _loop(void *parameter);
 static void _slowTermWriteLine(const char *s);
 
-TaskHandle_t __task1Handle = NULL;
-TaskHandle_t __task2Handle = NULL;
+TaskHandle_t _task1Handle = NULL;
+TaskHandle_t _task2Handle = NULL;
 
 void demo_init(void) {
     xTaskCreate(_task1,
@@ -23,14 +23,14 @@ void demo_init(void) {
                 DEFAULT_TASK_STACK_SIZE,
                 NULL,
                 TASK1_PRIORITY,
-                &__task1Handle);
+                &_task1Handle);
 
     xTaskCreate(_task2,
                 "_task2",
                 DEFAULT_TASK_STACK_SIZE,
                 NULL,
                 TASK2_PRIORITY,
-                &__task2Handle);
+                &_task2Handle);
 
     xTaskCreate(_loop,
                 "_loop",
@@ -67,15 +67,15 @@ static void _loop(void *parameter) {
     while(1) {
         for(i = 0; i < 3; ++i)
         {
-            vTaskSuspend( __task2Handle );
+            vTaskSuspend( _task2Handle );
             vTaskDelay( pdMS_TO_TICKS( 2000 ) );
-            vTaskResume( __task2Handle );
+            vTaskResume( _task2Handle );
             vTaskDelay( pdMS_TO_TICKS( 2000 ) );
         }
 
-        if(__task1Handle != NULL) {
-            vTaskDelete(__task1Handle);
-            __task1Handle = NULL;
+        if(_task1Handle != NULL) {
+            vTaskDelete(_task1Handle);
+            _task1Handle = NULL;
             demo_hw_term_writeLine("Task1 deleted.");
         }
     }

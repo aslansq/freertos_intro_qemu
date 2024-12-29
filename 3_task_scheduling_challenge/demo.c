@@ -14,7 +14,7 @@
 static void _taskInput(void *parameter);
 static void _taskLed(void *parameter);
 
-static int __ledDelay = 1000;
+static int _ledDelay = 1000;
 
 void demo_init(void) {
     xTaskCreate(_taskInput,
@@ -47,8 +47,8 @@ static void _taskInput( void * parameter ) {
         r = demo_hw_term_readLine(buf, sizeof(buf));
         if(r >= 0) {
             inledDelay = atoi(buf);
-            __ledDelay = inledDelay;
-            demo_hw_term_printf("Led delay updated to(ms): %d", __ledDelay);
+            _ledDelay = inledDelay;
+            demo_hw_term_printf("Led delay updated to(ms): %d", _ledDelay);
         }
     }
 }
@@ -58,6 +58,6 @@ static void _taskLed( void * parameter ) {
     (void)parameter;
     for( ;; ) {
         demo_hw_led_toggle();
-        vTaskDelay( pdMS_TO_TICKS( __ledDelay ) );
+        vTaskDelay( pdMS_TO_TICKS( _ledDelay ) );
     }
 }

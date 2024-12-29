@@ -11,17 +11,17 @@
 void _backlightTmCbk(TimerHandle_t xTimer);
 static void _userInTask(void * pvParameters);
 
-static const char __backlightTmChar = 'b';
+static const char _backlightTmChar = 'b';
 // one shot timer handle
-static TimerHandle_t __backlightTm;
+static TimerHandle_t _backlightTm;
 
 void demo_init(void) {
     BaseType_t ret;
-    __backlightTm = xTimerCreate(
+    _backlightTm = xTimerCreate(
         "backlightTm",              // pcTimerName
         pdMS_TO_TICKS( 5000 ),      // xTimerPeriod
         pdFALSE,                    // uxAutoReload
-        (void *)&__backlightTmChar, // pvTimerID
+        (void *)&_backlightTmChar, // pvTimerID
         _backlightTmCbk             // pxCallbackFunction
     );
 
@@ -34,21 +34,21 @@ void demo_init(void) {
         NULL                     // pxCreatedTask
     );
 
-    if(__backlightTm == NULL ||
+    if(_backlightTm == NULL ||
        ret != pdTRUE) {
         demo_hw_term_writeLine("err timer");
         while(1)
             ;
     }
 
-    xTimerStart(__backlightTm, portMAX_DELAY);
+    xTimerStart(_backlightTm, portMAX_DELAY);
     vTaskStartScheduler();
     for( ; ; ) {
     }
 }
 
 static void _userInTask(void * pvParameters) {
-    if(__backlightTm == NULL) {
+    if(_backlightTm == NULL) {
         demo_hw_term_writeLine("err back null");
         while(1)
             ;
@@ -61,7 +61,7 @@ static void _userInTask(void * pvParameters) {
         if(ret) {
             demo_hw_led_set(1);
             demo_hw_term_writeChar(c);
-            xTimerStart(__backlightTm, portMAX_DELAY);
+            xTimerStart(_backlightTm, portMAX_DELAY);
         }
     }
 }
@@ -73,7 +73,7 @@ void _backlightTmCbk(TimerHandle_t xTimer) {
             ;
     }
     char *cPtr = (char *)pvTimerGetTimerID(xTimer);
-    if((*cPtr) == __backlightTmChar) {
+    if((*cPtr) == _backlightTmChar) {
         demo_hw_led_set(0);
     }
 }

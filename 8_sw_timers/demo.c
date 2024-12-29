@@ -6,8 +6,8 @@
 // Timer call back
 void _timerCallback(TimerHandle_t xTimer);
 
-static const char __oneShotTmChar = 'o';
-static const char __autoReTmChar = 'a';
+static const char _oneShotTmChar = 'o';
+static const char _autoReTmChar = 'a';
 
 void demo_init(void) {
     // one shot timer handle
@@ -18,14 +18,14 @@ void demo_init(void) {
     oneShotTm = xTimerCreate("oneShotTm",                // pcTimerName
                              pdMS_TO_TICKS( 2000 ),      // xTimerPeriod
                              pdFALSE,                    // uxAutoReload
-                             (void *)&__oneShotTmChar, // pvTimerID
+                             (void *)&_oneShotTmChar, // pvTimerID
                              _timerCallback);         // pxCallbackFunction
 
 
     autoReTm = xTimerCreate("autoReTm",                 // pcTimerName
                              pdMS_TO_TICKS( 1000 ),     // xTimerPeriod
                              pdTRUE,                    // uxAutoReload
-                             (void *)&__autoReTmChar, // pvTimerID
+                             (void *)&_autoReTmChar, // pvTimerID
                              _timerCallback);        // pxCallbackFunction
 
     if(oneShotTm == NULL ||
@@ -44,9 +44,9 @@ void demo_init(void) {
 
 void _timerCallback(TimerHandle_t xTimer) {
     char *cPtr = (char *)pvTimerGetTimerID(xTimer);
-    if((*cPtr) == __oneShotTmChar) {
+    if((*cPtr) == _oneShotTmChar) {
         demo_hw_term_writeLine("one shot tm expired.");
-    } else if((*cPtr) == __autoReTmChar) {
+    } else if((*cPtr) == _autoReTmChar) {
         demo_hw_term_writeLine("auto reload tm expired.");
     }
 }

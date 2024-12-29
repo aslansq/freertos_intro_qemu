@@ -7,8 +7,8 @@
 #define DEFAULT_PRIORITY   (tskIDLE_PRIORITY + 1)
 #define DEFAULT_STACK_SIZE (1024u)
 
-char *__msg = NULL;
-uint8_t __msgReadyFlag = 0;
+char *_msg = NULL;
+uint8_t _msgReadyFlag = 0;
 
 static void _taskA( void * pvParameters );
 static void _taskB( void * pvParameters );
@@ -40,19 +40,19 @@ static void _taskA( void * pvParameters ) {
     for( ; ; ) {
         demo_hw_term_readLine(buf, 200);
         size_t msgSize = (strlen(buf)+1) * sizeof(char); // +1 for null
-        __msg = (char *) pvPortMalloc(msgSize);
-        memcpy(__msg, buf, msgSize);
-        __msgReadyFlag = 1;
+        _msg = (char *) pvPortMalloc(msgSize);
+        memcpy(_msg, buf, msgSize);
+        _msgReadyFlag = 1;
     }
 }
 
 static void _taskB( void * pvParameters ) {
     for( ; ; ) {
-        if(__msgReadyFlag && __msg != NULL) {
-            demo_hw_term_printf("%s\n", __msg);
-            vPortFree(__msg);
-            __msg = NULL;
-            __msgReadyFlag = 0;
+        if(_msgReadyFlag && _msg != NULL) {
+            demo_hw_term_printf("%s\n", _msg);
+            vPortFree(_msg);
+            _msg = NULL;
+            _msgReadyFlag = 0;
         }
     }
 }

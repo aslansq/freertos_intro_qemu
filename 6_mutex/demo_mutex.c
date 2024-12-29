@@ -7,12 +7,12 @@
 #define DEFAULT_STACK_SIZE (1024u)
 
 static void _incTask(void * pvParameters);
-static int __sharedVar = 0;
+static int _sharedVar = 0;
 
-static SemaphoreHandle_t __sharedVar_mutex;
+static SemaphoreHandle_t _sharedVar_mutex;
 
 void demo_init(void) {
-    __sharedVar_mutex = xSemaphoreCreateMutex();
+    _sharedVar_mutex = xSemaphoreCreateMutex();
 
     xTaskCreate(_incTask,
                 "A",
@@ -48,14 +48,14 @@ static void _incTask(void * pvParameters) {
     int localVar = 0;
     int ranDurOfOp = 0;
     for( ; ; ) {
-        if(xSemaphoreTake(__sharedVar_mutex, 5) == pdTRUE) {
+        if(xSemaphoreTake(_sharedVar_mutex, 5) == pdTRUE) {
             ranDurOfOp = _myRand();
-            localVar = __sharedVar;
+            localVar = _sharedVar;
             localVar++;
             vTaskDelay( pdMS_TO_TICKS( ranDurOfOp ) );
-            __sharedVar = localVar;
-            demo_hw_term_printf("%d\n", __sharedVar);
-            xSemaphoreGive(__sharedVar_mutex);
+            _sharedVar = localVar;
+            demo_hw_term_printf("%d\n", _sharedVar);
+            xSemaphoreGive(_sharedVar_mutex);
         }
     }
 }

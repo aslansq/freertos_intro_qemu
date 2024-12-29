@@ -13,7 +13,7 @@
 static void _printMsgs(void * pvParameters);
 static void _sendMsg(void * pvParameters);
 
-static QueueHandle_t __xQueue1 = NULL;
+static QueueHandle_t _xQueue1 = NULL;
 
 void demo_init(void) {
     xTaskCreate(_printMsgs,
@@ -31,7 +31,7 @@ void demo_init(void) {
                 NULL );
 
     // can hold 10 int32_t
-    __xQueue1 = xQueueCreate( 10, sizeof( uint8_t ) );
+    _xQueue1 = xQueueCreate( 10, sizeof( uint8_t ) );
 
     /* Start the tasks and timer running. */
     vTaskStartScheduler();
@@ -47,10 +47,10 @@ static void _printMsgs( void * pvParameters ) {
     uint8_t msg = 0;
     BaseType_t recvRet; // receive return value
     for( ;; ) {
-        if (__xQueue1 == NULL) {
+        if (_xQueue1 == NULL) {
             // do nothing
         } else {
-            recvRet = xQueueReceive(__xQueue1, (void *)&msg, (TickType_t)0);
+            recvRet = xQueueReceive(_xQueue1, (void *)&msg, (TickType_t)0);
             if(recvRet != pdTRUE) {
                 demo_hw_term_writeLine("-1");
             } else {
@@ -67,11 +67,11 @@ static void _sendMsg( void * pvParameters ) {
     uint8_t msg = 0;
     BaseType_t sendRet; // send function return value
     for( ;; ) {
-        if(__xQueue1 == NULL) {
+        if(_xQueue1 == NULL) {
             // do nothing
         } else {
             // can wait for 10 ticks if necessary
-            sendRet = xQueueSend(__xQueue1, (void *)&msg, (TickType_t)10);
+            sendRet = xQueueSend(_xQueue1, (void *)&msg, (TickType_t)10);
             if(sendRet != pdTRUE) {
                 // just here so you can put breakpoint
             }
