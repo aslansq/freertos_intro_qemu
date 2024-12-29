@@ -1,5 +1,7 @@
 # 5_queue_challenge
-
+```
+../shell/rebuild_run_qemu.sh .
+```
 Challenge of [Introduction to RTOS Part 5 - Queue](https://www.youtube.com/watch?v=pHJ3lxOoWeI&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=5)
 
 ![Simple UI](./doc/challenge.png "Simple UI")

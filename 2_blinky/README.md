@@ -1,6 +1,9 @@
 # 2_blinky
 
 Blinks every 1 second.
+```
+../shell/rebuild_run_qemu.sh .
+```
 
 ## Terminal Output
 ```

@@ -1,6 +1,8 @@
 # 4_memory_challenge
 
-```Please ignore race conditions for now```
+```
+../shell/rebuild_run_qemu.sh .
+```
 
 Challenge of [Introduction to RTOS Part 4 - Memory Management ](https://www.youtube.com/watch?v=Qske3yZRW5I&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=4)
 

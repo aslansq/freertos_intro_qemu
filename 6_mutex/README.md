@@ -1,17 +1,20 @@
 # 6_mutex
 
 Two demos available. Pass one of the arguments to CMake.
+
+<mark>demo_mutex.c</mark>
 ```
-demo_mutex.c
-DEMO_MUTEX_C:BOOL=ON
+../shell/rebuild_run_qemu.sh . -DDEMO_MUTEX_C:BOOL=ON
 ```
+
+<mark>demo_race.c</mark>
 ```
-demo_race.c
-DEMO_RACE_C:BOOL=ON
+../shell/rebuild_run_qemu.sh . -DDEMO_RACE_C:BOOL=ON
 ```
+
+<mark>default demo.c</mark>
 ```
-default
-DEMO_MUTEX_C:BOOL=ON
+../shell/rebuild_run_qemu.sh .
 ```
 
 [Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)

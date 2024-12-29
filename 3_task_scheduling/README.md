@@ -1,5 +1,8 @@
 # 3_task_scheduling
 
+```
+../shell/rebuild_run_qemu.sh .
+```
 [Introduction to RTOS Part 3 - Task Scheduling | Digi-Key Electronics](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)
 
 Task2 has higher priority and preempts task1.
