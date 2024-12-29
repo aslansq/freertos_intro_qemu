@@ -9,6 +9,7 @@
 
 /**
  * @brief printf
+ * @warning expanded string should not be longer 99
  */
 void demo_hw_term_printf(const char *format, ...);
 
@@ -75,6 +76,12 @@ void demo_hw_led_set(uint8_t st);
  * @brief toggle led
  */
 void demo_hw_led_toggle(void);
+
+/**
+ * @brief just returns some number.
+ *        actual value of adc is not important for the demo.
+ */
+uint8_t demo_hw_adc_read(void);
 
 
 #endif // DEMO_HW

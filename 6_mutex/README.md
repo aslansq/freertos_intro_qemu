@@ -4,8 +4,16 @@ Implementation in [demo.c](./demo.c).
 
 Two demos available. Pass one of the arguments to CMake.
 ```
--DDEMO_MUTEX:BOOL=ON
--DDEMO_RACE:BOOL=ON
+demo_mutex.c
+DEMO_MUTEX_C:BOOL=ON
+```
+```
+demo_race.c
+DEMO_RACE_C:BOOL=ON
+```
+```
+default
+DEMO_MUTEX_C:BOOL=ON
 ```
 
 [Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)
