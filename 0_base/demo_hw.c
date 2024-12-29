@@ -13,6 +13,7 @@
 static void _uart1_update(void);
 
 static uint8_t _led_st = 0;
+static uint8_t _adc_val = 0;
 
 // PUBLIC
 
@@ -26,6 +27,7 @@ void demo_hw_term_printf(const char *format, ...) {
 }
 
 void demo_hw_term_writeChar(char c) {
+    c = (c == '\r') ? '\n' : c;
     UART0_TX_WAIT();
     UART0_DATA = c;
     if(c == '\n') {
@@ -117,11 +119,13 @@ void demo_hw_led_toggle(void) {
 }
 
 uint8_t demo_hw_adc_read(void) {
-    static uint8_t adcBuf[] = {160, 170, 200, 180, 150}; // :) behave like adc reading fluctuate like in real life
+    static uint8_t adcBuf[] = {160, 170, 200, 180, 150, 121}; // :) behave like adc reading fluctuate like in real life
     static uint8_t adcBufIdx = 0;
     ++adcBufIdx;
     if(adcBufIdx == sizeof(adcBuf))
         adcBufIdx = 0;
+    _adc_val = adcBuf[adcBufIdx];
+    _uart1_update();
     return adcBuf[adcBufIdx];
 }
 
@@ -140,9 +144,19 @@ void demo_hw_init(void) {
  * @brief rewrites everything
  */
 static void _uart1_update(void) {
-    static char uart1_buf[] = "led : 0\r";
-    static char *ledStPtr = &uart1_buf[6];
+    static char uart1_buf[] =
+"\
+\x1b[H\
+led : 0\n\r\
+adc : 000\n\r\
+";
+    static char *ledStPtr = &uart1_buf[9];
+    static char *adcValPtr = &uart1_buf[18];
     *ledStPtr = (_led_st) ? '1' : '0';
+    adcValPtr[0] = ' ';
+    adcValPtr[1] = ' ';
+    adcValPtr[2] = ' ';
+    sprintf(adcValPtr, "%d", (int)_adc_val);
     uint8_t idx = 0;
     while(uart1_buf[idx] != '\0') {
         UART1_TX_WAIT();

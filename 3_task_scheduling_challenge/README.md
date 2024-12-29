@@ -1,6 +1,8 @@
 # 3_task_scheduling
 
-```Please ignore race conditions for now```
+```
+../shell/rebuild_run_qemu.sh .
+```
 
 Challenge of [Introduction to RTOS Part 3 - Task Scheduling | Digi-Key Electronics](https://www.youtube.com/watch?v=95yUbClyf3E&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=3)
 

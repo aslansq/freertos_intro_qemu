@@ -1,10 +1,11 @@
-# 8_sw_timers
-
+# 9_hw_int_challenge
+ 
 ```
 ../shell/rebuild_run_qemu.sh .
 ```
-
-[Introduction to RTOS Part 8 - Software Timer ](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)
+  
+Challenge of [Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)  
+  
 
 ## Terminal Output
 

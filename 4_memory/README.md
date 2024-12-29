@@ -4,33 +4,40 @@
 
 This file demonstrates memory management in FreeRTOS
 Explanation of demos:
+
+<mark>DEMO_1_C overflow stack by recursive call</mark>
 ```
-DEMO_1_C
-overflow stack by recursive call
+../shell/rebuild_run_qemu.sh . -DDEMO_1_C:BOOL=ON
 ```
+
+<mark>DEMO_2_C allocating huge array in stack to ovf</mark>
 ```
-DEMO_2_C
-allocating huge array in stack to ovf
+../shell/rebuild_run_qemu.sh . -DDEMO_2_C:BOOL=ON
 ```
+
+<mark>DEMO_3_C ovf heap u32 at a time</mark>
 ```
-DEMO_3_C
-ovf heap u32 at a time
+../shell/rebuild_run_qemu.sh . -DDEMO_3_C:BOOL=ON
 ```
+
+<mark>DEMO_4_C ovf heap in single shot</mark>
 ```
-DEMO_4_C
-ovf heap in single shot
+../shell/rebuild_run_qemu.sh . -DDEMO_4_C:BOOL=ON
 ```
+
+<mark>DEMO_5_C properly malloc and free. this should be fine</mark>
 ```
-DEMO_5_C
-properly malloc and free. this should be fine
+../shell/rebuild_run_qemu.sh . -DDEMO_5_C:BOOL=ON
 ```
+
+<mark>DEMO_6_C overflow of static stack by recursive call</mark>
 ```
-DEMO_6_C
-overflow of static stack by recursive call
+../shell/rebuild_run_qemu.sh . -DDEMO_6_C:BOOL=ON
 ```
+
+<mark> default DEMO_1_C
 ```
-default
-DEMO_1_C
+../shell/rebuild_run_qemu.sh .
 ```
 
 ## Terminal Output

@@ -14,7 +14,8 @@ demos="\
 7_semaphore_challenge \
 8_sw_timers \
 8_sw_timers_challenge \
-9_hw_int"
+9_hw_int \
+9_hw_int_challenge"
 
 getMacros()
 {
