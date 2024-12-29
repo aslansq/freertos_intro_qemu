@@ -20,6 +20,11 @@ if(DEMO_ADC_C)
     set(demo_src "demo_adc.c")
 endif()
 
+if(DEMO_NOTIFY_C)
+    message(STATUS "demo_notify.c selected.")
+    set(demo_src "demo_notify.c")
+endif()
+
 if(NOT demo_src)
     message(WARNING "No demo source file specified.")
     message(STATUS "demo_adc.c selected.")

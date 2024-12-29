@@ -35,6 +35,7 @@ getMacros()
     demo_9_hw_int_macros="\
     -DDEMO_TM_C:BOOL=ON\
     -DDEMO_ADC_C:BOOL=ON\
+    -DDEMO_NOTIFY_C:BOOL=ON\
     "
 
     demo="$1"

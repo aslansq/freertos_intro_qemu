@@ -305,7 +305,7 @@
           {
             "label": "RunQemu_9_hw_int",
             "type": "shell",
-            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/9_hw_int debug -DDEMO_ADC_C:BOOL=ON",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/9_hw_int debug -DDEMO_NOTIFY_C:BOOL=ON",
             "isBackground": true,
             "problemMatcher": [
               {
