@@ -4,15 +4,15 @@ Implementation in [demo.c](./demo.c).
 
 Two demos available. Pass one of the arguments to CMake.
 ```
--DAPP_DEMO_MUTEX:BOOL=ON
--DAPP_DEMO_RACE:BOOL=ON
+-DDEMO_MUTEX:BOOL=ON
+-DDEMO_RACE:BOOL=ON
 ```
 
 [Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)
 
 ## Terminal Output
 ```
-$ ../shell/rebuild.sh . -DAPP_DEMO_MUTEX:BOOL=ON
+$ ../shell/rebuild.sh . -DDEMO_MUTEX:BOOL=ON
 $ ../shell/run_qemu.sh ./build/demo
 char device redirected to /dev/pts/1 (label serial1)
 1
@@ -33,7 +33,7 @@ char device redirected to /dev/pts/1 (label serial1)
 ```
 
 ```
-$ ../shell/rebuild.sh . -DAPP_DEMO_RACE:BOOL=ON
+$ ../shell/rebuild.sh . -DDEMO_RACE:BOOL=ON
 $ ../shell/run_qemu.sh ./build/demo
 char device redirected to /dev/pts/1 (label serial1)
 1

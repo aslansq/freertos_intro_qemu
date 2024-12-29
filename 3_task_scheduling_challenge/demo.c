@@ -7,9 +7,9 @@
 #include "task.h"
 #include "demo_hw.h"
 
-#define APP_TASK_INPUT_PRIORITY (tskIDLE_PRIORITY + 1)
-#define APP_TASK_LED_PRIORITY   (tskIDLE_PRIORITY + 1)
-#define APP_DEFAULT_TASK_STACK_SIZE 1024
+#define TASK_INPUT_PRIORITY (tskIDLE_PRIORITY + 1)
+#define TASK_LED_PRIORITY   (tskIDLE_PRIORITY + 1)
+#define DEFAULT_TASK_STACK_SIZE 1024
 
 static void _taskInput(void *parameter);
 static void _taskLed(void *parameter);
@@ -19,16 +19,16 @@ static int _ledDelay = 1000;
 void demo_init(void) {
     xTaskCreate(_taskInput,
                 "in",
-                APP_DEFAULT_TASK_STACK_SIZE,
+                DEFAULT_TASK_STACK_SIZE,
                 NULL,
-                APP_TASK_INPUT_PRIORITY,
+                TASK_INPUT_PRIORITY,
                 NULL);
 
     xTaskCreate(_taskLed,
                 "led",
-                APP_DEFAULT_TASK_STACK_SIZE,
+                DEFAULT_TASK_STACK_SIZE,
                 NULL,
-                APP_TASK_LED_PRIORITY,
+                TASK_LED_PRIORITY,
                 NULL);
 
     /* Start the tasks and timer running. */

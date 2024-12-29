@@ -7,8 +7,8 @@ Implementation in [demo.c](./demo.c).
 ## Terminal Output
 When send is faster than print.
 ```
-#define APP_PRINT_MSG_DELAY (1000)
-#define APP_SEND_MSG_DELAY  (100)
+#define PRINT_MSG_DELAY (1000)
+#define SEND_MSG_DELAY  (100)
 ```
 Terminal output is:
 ```
