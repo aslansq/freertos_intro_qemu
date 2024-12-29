@@ -23,7 +23,9 @@ if(DEMO_RACE_C)
 endif()
 
 if(NOT demo_src)
-    message(FATAL_ERROR "No demo source file specified. Please define DEMO_MUTEX_C or DEMO_RACE_C")
+    message(WARNING "No demo source file specified.")
+    message(STATUS "demo_mutex.c selected.")
+    set(demo_src "demo_mutex.c")
 endif()
 
 add_subdirectory(0_base)

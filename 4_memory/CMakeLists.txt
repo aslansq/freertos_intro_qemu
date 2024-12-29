@@ -43,7 +43,9 @@ if(DEMO_6_C)
 endif()
 
 if(NOT demo_src)
-    message(FATAL_ERROR "No demo source file specified. Please define one of the DEMO_X_C options.")
+    message(WARNING "No demo source file specified.")
+    message(STATUS "demo1.c is going to be used")
+    set(demo_src "demo1.c")
 endif()
 
 add_subdirectory(0_base)
