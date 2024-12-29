@@ -70,7 +70,7 @@ const uint32_t* isr_vector[] __attribute__((section(".isr_vector"), used)) =
     0,
     0,
     ( uint32_t * ) TIMER0_Handler,     // Timer 0
-    ( uint32_t * ) TIMER1_Handler,     // Timer 1
+    0,     // Timer 1
     0,
     0,
     0,

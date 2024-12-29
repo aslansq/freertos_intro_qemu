@@ -3,21 +3,22 @@
 #include "task.h"
 // demo hardware
 #include "demo_hw.h"
+#include "CMSDK_CM3.h"
 
 #define DEFAULT_TASK_LOOP_PRIORITY (tskIDLE_PRIORITY + 1)
 #define DEFAULT_TASK_STACK_SIZE    (1024u)
 
-static void _blinkTask(void * pvParameters);
+#define TM0 CMSDK_TIMER0
+#define TIMER_INT_CLEAR() (TM0->INTCLEAR |= CMSDK_TIMER_INTCLEAR_Msk)
+#define TIMER_FREQUENCY	  ( 1UL )
 
 void demo_init(void) {
-    xTaskCreate(
-        _blinkTask,                  // pvTaskCode
-        "blink",                    // pcName
-        DEFAULT_TASK_STACK_SIZE,    // uxStackDepth
-        NULL,                       // pvParameters
-        DEFAULT_TASK_LOOP_PRIORITY, // uxPriority
-        NULL                        // pxCreatedTask
-    );
+    TIMER_INT_CLEAR();
+    TM0->CTRL |= CMSDK_TIMER_CTRL_IRQEN_Msk;
+    TM0->RELOAD = ( configCPU_CLOCK_HZ / TIMER_FREQUENCY ) + 1UL;
+    TM0->CTRL |= CMSDK_TIMER_CTRL_EN_Msk;
+    NVIC_SetPriority( TIMER0_IRQn, configMAX_SYSCALL_INTERRUPT_PRIORITY );
+    NVIC_EnableIRQ( TIMER0_IRQn );
 
     vTaskStartScheduler();
 
@@ -26,13 +27,9 @@ void demo_init(void) {
     }
 }
 
-static void _blinkTask( void * pvParameters ) {
-    /* Prevent the compiler warning about the unused parameter. */
-    (void)pvParameters;
-    static uint8_t ledSt = 0;
-    for( ;; ) {
-        vTaskDelay( pdMS_TO_TICKS( 1000 ) );
-        ledSt = !ledSt;
-        demo_hw_led_set(ledSt);
-    }
+void TIMER0_Handler( void )
+{
+	/* Clear interrupt. */
+	TIMER_INT_CLEAR();
+    demo_hw_led_toggle();
 }
