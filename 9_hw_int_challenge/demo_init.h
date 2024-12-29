@@ -12,18 +12,24 @@
 // demo hardware
 #include "demo_hw.h"
 #include "CMSDK_CM3.h"
-
-#define DEFAULT_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
-#define DEFAULT_TASK_STACK_SIZE (1024u)
-
+// timer related defines
 #define TM0 CMSDK_TIMER0
 #define TIMER_INT_CLEAR() (TM0->INTCLEAR |= CMSDK_TIMER_INTCLEAR_Msk)
 #define TIMER_FREQUENCY   ( 10UL )
-
 #define PRIO_ISR_TIMER configMAX_SYSCALL_INTERRUPT_PRIORITY // the hardware priority of the interrupt
-
+#define SIZE_OF_ADC_QUEUE (10u)
+// task priorities
+#define DEFAULT_TASK_PRIORITY (tskIDLE_PRIORITY + 1)
+#define LED_TASK_PRIORITY     (tskIDLE_PRIORITY + 2)
+#define B_TASK_PRIORITY       (tskIDLE_PRIORITY + 3)
+#define A_TASK_PRIORITY       (tskIDLE_PRIORITY + 4)
+// default stack size
+#define DEFAULT_TASK_STACK_SIZE (1024u)
+// number of ring buffers
 #define NUM_OF_RINGS (3u)
+// size of ring buffer
 #define SIZE_OF_RING_BUF (16u)
+// notify task to process when you this number of samples
 #define NOTIFY_WHEN_NUM_OF_ADC_READS (10u)
 #if (SIZE_OF_RING_BUF - NOTIFY_WHEN_NUM_OF_ADC_READS - 1) < 0
     #error number of reads would not fit into ring buffer
@@ -49,6 +55,8 @@ typedef struct {
     TaskHandle_t taskHandle;
     // ring buffers filled by tm isr
     ring_buffer_t *isrRingBuf[NUM_OF_RINGS];
+    // ring buffer notification
+    uint8_t ringBufNotifyIdx;
     // analog digital converted value average
     float adcAvg;
     // adc avg values provider for the queue

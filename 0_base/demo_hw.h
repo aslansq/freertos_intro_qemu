@@ -16,7 +16,7 @@ void demo_hw_term_printf(const char *format, ...);
 /**
  * @brief write a byte to terminal
  */
-void demo_hw_term_writeChar(char u8);
+void demo_hw_term_writeChar(char c);
 
 /**
  * @brief writes null terminated buffer to stdout of your terminal

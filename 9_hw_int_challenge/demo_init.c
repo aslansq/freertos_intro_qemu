@@ -51,7 +51,7 @@ void demo_init_taskA(demo_taskAHandle_T *demoHandle,
         "a",                      // pcName
         DEFAULT_TASK_STACK_SIZE,  // uxStackDepth
         (void *)demoHandle,       // pvParameters
-        DEFAULT_TASK_PRIORITY,    // uxPriority
+        A_TASK_PRIORITY,          // uxPriority
         &demoHandle->taskHandle   // pxCreatedTask
     );
 
@@ -61,6 +61,8 @@ void demo_init_taskA(demo_taskAHandle_T *demoHandle,
     for(i = 0; i < NUM_OF_RINGS; ++i) {
         demoHandle->isrRingBuf[i] = &isrRingBuf[i];
     }
+    // start from first ring buffer
+    demoHandle->ringBufNotifyIdx = 0;
     // default avegared adc reading
     demoHandle->adcAvg = 0.0;
     // get reference for queue
@@ -78,7 +80,7 @@ void demo_init_taskB(demo_taskBHandle_T *demoHandle,
         "b",                      // pcName
         DEFAULT_TASK_STACK_SIZE,  // uxStackDepth
         (void *)demoHandle,       // pvParameters
-        DEFAULT_TASK_PRIORITY,    // uxPriority
+        B_TASK_PRIORITY,          // uxPriority
         NULL                      // pxCreatedTask
     );
 
@@ -95,7 +97,7 @@ void demo_init_taskLed(void) {
         "l",                      // pcName
         DEFAULT_TASK_STACK_SIZE,  // uxStackDepth
         NULL,                     // pvParameters
-        DEFAULT_TASK_PRIORITY,    // uxPriority
+        LED_TASK_PRIORITY,        // uxPriority
         NULL                      // pxCreatedTask
     );
 
