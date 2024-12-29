@@ -13,9 +13,9 @@ project(${prj})
 add_subdirectory(0_base)
 
 # Add all source files in the current directory
-file(GLOB app_src "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
+file(GLOB demo_src "${CMAKE_CURRENT_SOURCE_DIR}/*.c")
 
-set(src ${src} ${app_src})
+set(src ${src} ${demo_src})
 set(inc ${inc} ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Add the executable
