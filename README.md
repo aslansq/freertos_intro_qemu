@@ -14,6 +14,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |[Introduction to RTOS Part 6 - Mutex](https://www.youtube.com/watch?v=I55auRpbiTs&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=6)|[6_mutex](./6_mutex/README.md)|[6_mutex_challenge](./6_mutex_challenge/README.md)|
 |[Introduction to RTOS Part 7 - Semaphore](https://www.youtube.com/watch?v=5JcMtbA9QEE&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=7)|[7_semaphore](./7_semaphore/README.md)|[7_semaphore_challenge](./7_semaphore_challenge/README.md)|
 |[Introduction to RTOS Part 8 - Software Timer](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)|[8_sw_timers](./8_sw_timers/README.md)|[8_sw_timers_challenge](./8_sw_timers_challenge/README.md)|
+|[Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)|[9_hw_int](./9_hw_int/README.md)||
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.
 

@@ -32,6 +32,11 @@ getMacros()
     -DDEMO_MUTEX_C:BOOL=ON\
     "
 
+    demo_9_hw_int_macros="\
+    -DDEMO_TM_C:BOOL=ON\
+    -DDEMO_ADC_C:BOOL=ON\
+    "
+
     demo="$1"
     if [ "${demo}" == "4_memory" ]
     then
@@ -39,6 +44,9 @@ getMacros()
     elif [ "${demo}" == "6_mutex" ]
     then
         echo "${demo_6_mutex_macros}"
+    elif [ "${demo}" == "9_hw_int" ]
+    then
+        echo "${demo_9_hw_int_macros}"
     fi
 }
 

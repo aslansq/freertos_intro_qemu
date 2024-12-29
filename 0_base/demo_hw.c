@@ -116,6 +116,15 @@ void demo_hw_led_toggle(void) {
     demo_hw_led_set(!_led_st);
 }
 
+uint8_t demo_hw_adc_read(void) {
+    static uint8_t adcBuf[] = {160, 170, 200, 180, 150}; // :) behave like adc reading fluctuate like in real life
+    static uint8_t adcBufIdx = 0;
+    ++adcBufIdx;
+    if(adcBufIdx == sizeof(adcBuf))
+        adcBufIdx = 0;
+    return adcBuf[adcBufIdx];
+}
+
 // PROTECTED :)
 void demo_hw_init(void) {
     UART0_BAUDDIV = 16;

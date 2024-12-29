@@ -1,8 +1,26 @@
-# 8_sw_timers
+# 9_hw_int
 
 Implementation in [demo.c](./demo.c).
 
-Challenge of [Introduction to RTOS Part 8 - Software Timer ](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)
+Two demos available. Pass one of the arguments to CMake.
+```
+demo_tm.c
+DEMO_TM_C:BOOL=ON
+```
+```
+demo_adc.c
+DEMO_ADC_C:BOOL=ON
+```
+```
+default
+DEMO_ADC_C:BOOL=ON
+```
+
+[Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)
+
+As he explains while loop is running, interrupt occurs then OS switches to printValue.
+Purpose isr should be as short as possible. You let other task to handle information. This called deferred interrupt.
+![adcTrace](./doc/adcTrace.png "adcTrace")
 
 ## Terminal Output
 

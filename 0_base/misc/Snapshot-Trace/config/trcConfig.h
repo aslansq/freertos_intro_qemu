@@ -110,7 +110,7 @@ extern "C" {
  * Note: tracing ISRs requires that you insert calls to vTraceStoreISRBegin
  * and vTraceStoreISREnd in your interrupt handlers.
  */
-#define TRC_CFG_INCLUDE_ISR_TRACING 0
+#define TRC_CFG_INCLUDE_ISR_TRACING 1
 
 /**
  * @def TRC_CFG_INCLUDE_READY_EVENTS
