@@ -16,6 +16,7 @@ fi
 
 buildPath=$(dirname "${demoBin}")
 logFile=${buildPath}/log.txt
+errFile=${buildPath}/err.txt
 
 debugFlags=""
 
@@ -36,6 +37,12 @@ then
 echo CONNECT below serial port to see simulated hardware:
 qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demoBin" -monitor none -nographic -serial stdio -serial pty $debugFlags | tee ${logFile}
 else
-${FREERTOS_INTRO_QEMU_TERM} -- bash -c "${thisDirPath}/screen_hw.sh ${logFile}"
+${FREERTOS_INTRO_QEMU_TERM} -- bash -c "${thisDirPath}/screen_hw.sh ${logFile}" > ${errFile} 2>&1
+# somehow auto screen failed. do manually
+if [ $? != 0 ]
+then
+    echo see ${errFile} why auto screen failed.
+    echo CONNECT below serial port to see simulated hardware:
+fi
 qemu-system-arm -machine mps2-an385 -cpu cortex-m3 -kernel "$demoBin" -monitor none -nographic -serial stdio -serial pty $debugFlags | tee ${logFile}
 fi
