@@ -214,7 +214,7 @@ static void philosopherEat(void * pvParameters) {
         GIVE_RIGHT_CHOPSTICK(philosopher);
         demo_hw_term_printf("%s gave right\n", philosopher->name);
         GIVE_LEFT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s :(\n", philosopher->name);
+        demo_hw_term_printf("%s gave left\n", philosopher->name);
     }
 }
 
