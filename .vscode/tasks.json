@@ -324,6 +324,52 @@
                 }
               }
             ]
+          },
+          {
+            "label": "RunQemu_9_hw_int_challenge",
+            "type": "shell",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/9_hw_int_challenge debug",
+            "isBackground": true,
+            "problemMatcher": [
+              {
+                "pattern": [
+                  {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                  }
+                ],
+                "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "QEMU_started",
+                }
+              }
+            ]
+          },
+          {
+            "label": "RunQemu_10_deadlock_starvation",
+            "type": "shell",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/10_deadlock_starvation debug",
+            "isBackground": true,
+            "problemMatcher": [
+              {
+                "pattern": [
+                  {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                  }
+                ],
+                "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "QEMU_started",
+                }
+              }
+            ]
           }
     ]
 }
