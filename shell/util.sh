@@ -15,7 +15,8 @@ demos="\
 8_sw_timers \
 8_sw_timers_challenge \
 9_hw_int \
-9_hw_int_challenge"
+9_hw_int_challenge \
+10_deadlock_starvation"
 
 getMacros()
 {
@@ -39,6 +40,13 @@ getMacros()
     -DDEMO_NOTIFY_C:BOOL=ON\
     "
 
+    demo_10_deadlock_starvation_macros="\
+    -DDEMO_CHAIR_C:BOOL=ON\
+    -DDEMO_DEADLOCK_C:BOOL=ON\
+    -DDEMO_LIVELOCK_C:BOOL=ON\
+    -DDEMO_STICK_PRIO_C:BOOL=ON\
+    "
+
     demo="$1"
     if [ "${demo}" == "4_memory" ]
     then
@@ -49,6 +57,9 @@ getMacros()
     elif [ "${demo}" == "9_hw_int" ]
     then
         echo "${demo_9_hw_int_macros}"
+    elif [ "${demo}" == "10_deadlock_starvation" ]
+    then
+        echo "${demo_10_deadlock_starvation_macros}"
     fi
 }
 
