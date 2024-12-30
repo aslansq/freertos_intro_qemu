@@ -15,6 +15,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |[Introduction to RTOS Part 7 - Semaphore](https://www.youtube.com/watch?v=5JcMtbA9QEE&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=7)|[7_semaphore](./7_semaphore/README.md)|[7_semaphore_challenge](./7_semaphore_challenge/README.md)|
 |[Introduction to RTOS Part 8 - Software Timer](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)|[8_sw_timers](./8_sw_timers/README.md)|[8_sw_timers_challenge](./8_sw_timers_challenge/README.md)|
 |[Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)|[9_hw_int](./9_hw_int/README.md)|[9_hw_int_challenge](./9_hw_int_challenge/README.md)|
+|[Introduction to RTOS Part 10 - Deadlock and Starvation](https://www.youtube.com/watch?v=hRsWi4HIENc&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=10)|[10_deadlock_starvation](./10_deadlock_starvation/README.md)||
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.
 
@@ -25,25 +26,29 @@ You dont have hardware and you dont care about any specific hardware but learnin
 * Install GNU make utility.
 * Install CMake utility.
 * Update submodules recursively. ```git submodule update --init --recursive```
-* Give execute permission files under ```shell```. ```chmod +x shell/*.sh```
-* After all satisfied, run ```configure.sh```.```configure.sh``` checks prerequisities.
+* Give execute permission files under shell. ```chmod +x shell/*.sh```
+* After all satisfied, run configure.sh. configure.sh checks prerequisities.
 
 ## Running with VSCode
 1. Open VSCode to this folder.
 2. On the VSCode left side panel, select the “Run and Debug” button.
-3. Then select “Launch QEMU ```demo of your choice```” from the dropdown on the top right and press the play button.
+3. Then select “Launch QEMU <mark>demo of your choice</mark>” from the dropdown on the top right and press the play button.
 4. This will build, run, and attach a debugger to the demo program.
 
 ## Manual Build and Run QEMU
-Use the scripts under ```shell```
-Examples:  
-```./shell/rebuild_run_qemu.sh 9_hw_int_challenge/```  
-```./shell/rebuild.sh 9_hw_int_challenge/```  
-```./shell/rebuild_all.sh```
+Use the scripts under <mark>shell</mark>. Examples:
+```
+./shell/rebuild_run_qemu.sh 9_hw_int_challenge/
+```
+```
+./shell/rebuild.sh 9_hw_int_challenge/
+```  
+```
+./shell/rebuild_all.sh
+```
 
 ## Tip
-If you make environment variable FREERTOS_INTRO_QEMU_TERM, it will try to launch and connect serial hardware display.  
-Tested with gnome-terminal. In case something fails see the err.txt under build folder.
+If you make environment variable FREERTOS_INTRO_QEMU_TERM, it will try to launch and connect serial hardware display. Tested with gnome-terminal. In case something fails see the err.txt under build folder.
 Example  
 ```export FREERTOS_INTRO_QEMU_TERM=gnome-terminal```
 
