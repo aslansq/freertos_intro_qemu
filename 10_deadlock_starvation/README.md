@@ -1,8 +1,8 @@
 # 10_deadlock_starvation
 
-![Philosopher Hunger Problem](./doc/HungerProblem.png "Philosopher Hunger Problem")
+![Philosopher Hunger Problem](./doc/HungerProblem.png "Philosopher Hunger Problem")  
 Story:
-There are 5 philosopher and a table at dining hall. There are 5 chop sticks and a noodle on top of table. Philosopher are hungry. They need to share chop sticks to eat the noodle. They 2 chopstick to be able to eat noodle. Since they can concurrently take chop sticks, they may block each other. Demos below demonstrates how to solve these problem.  
+There are 5 philosopher and a table at dining hall. There are 5 chop sticks and a noodle on top of table. Philosopher are hungry. They need to share chop sticks to eat the noodle. They need 2 chopstick to be able to eat noodle. Since they can concurrently take chop sticks, they may block each other. Demos below demonstrates how to solve this problem.  
   
 <mark>demo_chair.c</mark>  
 If philosopher sits on even numbered chair, s/he gets left chop stick first. S/he gets right chopstick after left chopstick. Starts eating and after some time leaves chopstick at the table to share. If philosopher sits on odd numbered chair, order picking chopsticks is vice versa.
@@ -46,6 +46,7 @@ Making sense of terminal output:
 * led toggle is their party light
   
 <mark>Happy log from DEMO_CHAIR_C</mark>
+```
 Hypatia waiting  
 Confucius waiting  
 Antisthenes waiting  
@@ -68,7 +69,7 @@ Antisthenes gave right
 Antisthenes waiting  
 Confucius :)  
 Cruz :D  
-  
+```
 
 ## Notes
 Use demo_init function in demo.c to implement your demo application.
