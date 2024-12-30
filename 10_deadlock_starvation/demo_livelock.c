@@ -1,4 +1,6 @@
 // sorry this wont look like c code but a story
+// I was trying to implement timeout solution to solve deadlock but
+// it become livelock. saving it here.
 /* Kernel includes. */
 #include "FreeRTOS.h"
 #include "task.h"
@@ -42,17 +44,19 @@
 #define TIME_TO_REACH_A_CHOP_STICK (100u)
 // philosopher are nice they eat for some time and give chopsticks back
 #define TIME_TO_EAT (1000u)
+// philosopher tries to get a chopstick for this amount time then gives up
+#define TIME_TO_GIVE_UP (100u)
 
-#define GET_CHOPSTICK(chopstick) \
+#define GET_CHOPSTICK(chopstick, giveUpTime, gotChopStickPtr) \
 vTaskDelay( pdMS_TO_TICKS( TIME_TO_REACH_A_CHOP_STICK ) );\
-xSemaphoreTake((chopstick), portMAX_DELAY)
+*(gotChopStickPtr) = xSemaphoreTake((chopstick), (giveUpTime))\
 
 #define GIVE_CHOPSTICK(chopstick) \
 vTaskDelay( pdMS_TO_TICKS( TIME_TO_REACH_A_CHOP_STICK ) );\
 xSemaphoreGive((chopstick))
 
-#define GET_LEFT_CHOPSTICK(philosopher)  GET_CHOPSTICK(philosopher->leftChopStickPak->chopStick)
-#define GET_RIGHT_CHOPSTICK(philosopher) GET_CHOPSTICK(philosopher->rightChopStickPak->chopStick)
+#define GET_LEFT_CHOPSTICK(philosopher, giveUpTime, gotChopStickPtr)  GET_CHOPSTICK(philosopher->leftChopStickPak->chopStick, (giveUpTime), (gotChopStickPtr))
+#define GET_RIGHT_CHOPSTICK(philosopher, giveUpTime, gotChopStickPtr) GET_CHOPSTICK(philosopher->rightChopStickPak->chopStick, (giveUpTime), (gotChopStickPtr))
 
 #define GIVE_LEFT_CHOPSTICK(philosopher)  GIVE_CHOPSTICK(philosopher->leftChopStickPak->chopStick)
 #define GIVE_RIGHT_CHOPSTICK(philosopher) GIVE_CHOPSTICK(philosopher->rightChopStickPak->chopStick)
@@ -201,20 +205,28 @@ static void invitePhilosophersToHall(philosopher_t *philosopher) {
 static void philosopherEat(void * pvParameters) {
     configASSERT(!(pvParameters == NULL));
     philosopher_t *philosopher = (philosopher_t *)pvParameters;
+    BaseType_t gotChopStick;
     for( ; ; ) {
         demo_hw_term_printf("%s waiting\n", philosopher->name);
-        GET_LEFT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s got left\n", philosopher->name);
-        GET_RIGHT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s :)\n", philosopher->name);
+        GET_LEFT_CHOPSTICK(philosopher, TIME_TO_GIVE_UP, &gotChopStick);
+        if(gotChopStick) {
+                demo_hw_term_printf("%s got left\n", philosopher->name);
+                GET_RIGHT_CHOPSTICK(philosopher, TIME_TO_GIVE_UP, &gotChopStick);
+                if(gotChopStick) {
+                    demo_hw_term_printf("%s :)\n", philosopher->name);
+                    EAT();
+                    demo_hw_term_printf("%s :D\n", philosopher->name);
 
-        EAT();
-        demo_hw_term_printf("%s :D\n", philosopher->name);
-
-        GIVE_RIGHT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s gave right\n", philosopher->name);
-        GIVE_LEFT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s :(\n", philosopher->name);
+                    GIVE_RIGHT_CHOPSTICK(philosopher);
+                    demo_hw_term_printf("%s gave right\n", philosopher->name);
+                } else {
+                    demo_hw_term_printf("%s :/ right\n", philosopher->name);
+                }
+                GIVE_LEFT_CHOPSTICK(philosopher);
+                demo_hw_term_printf("%s gave left\n", philosopher->name);
+        } else {
+            demo_hw_term_printf("%s :/ left\n", philosopher->name);
+        }
     }
 }
 

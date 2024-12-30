@@ -19,6 +19,12 @@
 #define CHOP_STICK_4_PRIO (3u)
 #define CHOP_STICK_5_PRIO (4u)
 
+#define CHAIR_1_ID (0u)
+#define CHAIR_2_ID (1u)
+#define CHAIR_3_ID (2u)
+#define CHAIR_4_ID (3u)
+#define CHAIR_5_ID (4u)
+
 #define NUM_OF_CHOP_STICKS (5u)
 
 #define PARTY_LIGHT_PRIO     (tskIDLE_PRIORITY + 1)
@@ -67,6 +73,7 @@ typedef struct {
 
 typedef struct {
     char name[15];
+    uint8_t chairId;
     uint8_t id;
     uint8_t eatPrio;
     chopStickPak_t *leftChopStickPak;
@@ -106,6 +113,7 @@ diningHall_t diningHall = {
     },
     .philosophers[CRUZ_ID] = {
         .name = "Cruz",
+        .chairId = CHAIR_1_ID,
         .id = CRUZ_ID,
         .eatPrio = CRUZ_EAT_PRIO,
         .leftChopStickPak = &diningHall.table.chopStickPaks[CHOP_STICK_2_ID],
@@ -113,6 +121,7 @@ diningHall_t diningHall = {
     },
     .philosophers[DOUGLASS_ID] = {
         .name = "Douglass",
+        .chairId = CHAIR_2_ID,
         .id = DOUGLASS_ID,
         .eatPrio = DOUGLASS_EAT_PRIO,
         .leftChopStickPak = &diningHall.table.chopStickPaks[CHOP_STICK_3_ID],
@@ -120,6 +129,7 @@ diningHall_t diningHall = {
     },
     .philosophers[HYPATIA_ID] = {
         .name = "Hypatia",
+        .chairId = CHAIR_3_ID,
         .id = HYPATIA_ID,
         .eatPrio = HYPATIA_EAT_PRIO,
         .leftChopStickPak = &diningHall.table.chopStickPaks[CHOP_STICK_4_ID],
@@ -127,6 +137,7 @@ diningHall_t diningHall = {
     },
     .philosophers[CONFUCIUS_ID] = {
         .name = "Confucius",
+        .chairId = CHAIR_4_ID,
         .id = CONFUCIUS_ID,
         .eatPrio = CONFUCIUS_EAT_PRIO,
         .leftChopStickPak = &diningHall.table.chopStickPaks[CHOP_STICK_5_ID],
@@ -134,6 +145,7 @@ diningHall_t diningHall = {
     },
     .philosophers[ANTISTHENES_ID] = {
         .name = "Antisthenes",
+        .chairId = CHAIR_4_ID,
         .id = ANTISTHENES_ID,
         .eatPrio = ANTISTHENES_EAT_PRIO,
         .leftChopStickPak = &diningHall.table.chopStickPaks[CHOP_STICK_1_ID],
@@ -201,19 +213,32 @@ static void invitePhilosophersToHall(philosopher_t *philosopher) {
 static void philosopherEat(void * pvParameters) {
     configASSERT(!(pvParameters == NULL));
     philosopher_t *philosopher = (philosopher_t *)pvParameters;
+    uint8_t isChairEvenId = (philosopher->chairId % 2) ? 0 : 1;
     for( ; ; ) {
         demo_hw_term_printf("%s waiting\n", philosopher->name);
-        GET_LEFT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s got left\n", philosopher->name);
-        GET_RIGHT_CHOPSTICK(philosopher);
+        if(isChairEvenId) {
+            GET_LEFT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s got left\n", philosopher->name);
+            GET_RIGHT_CHOPSTICK(philosopher);
+        } else {
+            GET_RIGHT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s got right\n", philosopher->name);
+            GET_LEFT_CHOPSTICK(philosopher);
+        }
         demo_hw_term_printf("%s :)\n", philosopher->name);
 
         EAT();
         demo_hw_term_printf("%s :D\n", philosopher->name);
 
-        GIVE_RIGHT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s gave right\n", philosopher->name);
-        GIVE_LEFT_CHOPSTICK(philosopher);
+        if(isChairEvenId) {
+            GIVE_RIGHT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s gave right\n", philosopher->name);
+            GIVE_LEFT_CHOPSTICK(philosopher);
+        } else {
+            GIVE_LEFT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s gave left\n", philosopher->name);
+            GIVE_RIGHT_CHOPSTICK(philosopher);
+        }
         demo_hw_term_printf("%s :(\n", philosopher->name);
     }
 }

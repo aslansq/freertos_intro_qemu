@@ -201,19 +201,34 @@ static void invitePhilosophersToHall(philosopher_t *philosopher) {
 static void philosopherEat(void * pvParameters) {
     configASSERT(!(pvParameters == NULL));
     philosopher_t *philosopher = (philosopher_t *)pvParameters;
+    BaseType_t isLeftChopStickHasPrio = (philosopher->leftChopStickPak->prio >
+                                         philosopher->rightChopStickPak->prio) ? pdTRUE : pdFALSE;
+
     for( ; ; ) {
         demo_hw_term_printf("%s waiting\n", philosopher->name);
-        GET_LEFT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s got left\n", philosopher->name);
-        GET_RIGHT_CHOPSTICK(philosopher);
+        if(isLeftChopStickHasPrio) {
+            GET_LEFT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s got left\n", philosopher->name);
+            GET_RIGHT_CHOPSTICK(philosopher);
+        } else {
+            GET_RIGHT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s got right\n", philosopher->name);
+            GET_LEFT_CHOPSTICK(philosopher);
+        }
         demo_hw_term_printf("%s :)\n", philosopher->name);
 
         EAT();
         demo_hw_term_printf("%s :D\n", philosopher->name);
 
-        GIVE_RIGHT_CHOPSTICK(philosopher);
-        demo_hw_term_printf("%s gave right\n", philosopher->name);
-        GIVE_LEFT_CHOPSTICK(philosopher);
+        if(isLeftChopStickHasPrio) {
+            GIVE_RIGHT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s gave right\n", philosopher->name);
+            GIVE_LEFT_CHOPSTICK(philosopher);
+        } else {
+            GIVE_LEFT_CHOPSTICK(philosopher);
+            demo_hw_term_printf("%s gave left\n", philosopher->name);
+            GIVE_RIGHT_CHOPSTICK(philosopher);
+        }
         demo_hw_term_printf("%s :(\n", philosopher->name);
     }
 }

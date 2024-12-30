@@ -17,6 +17,21 @@ if(DEMO_DEADLOCK_C)
     set(demo_src "demo_deadlock.c")
 endif()
 
+if(DEMO_STICK_PRIO_C)
+    message(STATUS "demo_stick_prio.c is going to be used")
+    set(demo_src "demo_stick_prio.c")
+endif()
+
+if(DEMO_CHAIR_C)
+    message(STATUS "demo_chair.c is going to be used")
+    set(demo_src "demo_chair.c")
+endif()
+
+if(DEMO_LIVELOCK_C)
+    message(STATUS "demo_livelock.c is going to be used")
+    set(demo_src "demo_livelock.c")
+endif()
+
 if(NOT demo_src)
     message(WARNING "No demo source file specified.")
     message(STATUS "demo_deadlock.c is going to be used")
