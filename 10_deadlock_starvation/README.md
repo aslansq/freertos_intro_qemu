@@ -1,6 +1,6 @@
-# 10_deadlock_starvation
+# 10_deadlock_starvation (Dining Philosopher Problem)
 
-![Philosopher Hunger Problem](./doc/HungerProblem.png "Philosopher Hunger Problem")  
+![Dining Philosopher Problem](./doc/HungerProblem.png "Dining Philosopher Problem")  
 Story:
 There are 5 philosopher and a table at dining hall. There are 5 chop sticks and a noodle on top of table. Philosopher are hungry. They need to share chop sticks to eat the noodle. They need 2 chopstick to be able to eat noodle. Since they can concurrently take chop sticks, they may block each other. Demos below demonstrates how to solve this problem.  
   

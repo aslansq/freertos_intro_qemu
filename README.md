@@ -15,7 +15,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |[Introduction to RTOS Part 7 - Semaphore](https://www.youtube.com/watch?v=5JcMtbA9QEE&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=7)|[7_semaphore](./7_semaphore/README.md)|[7_semaphore_challenge](./7_semaphore_challenge/README.md)|
 |[Introduction to RTOS Part 8 - Software Timer](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)|[8_sw_timers](./8_sw_timers/README.md)|[8_sw_timers_challenge](./8_sw_timers_challenge/README.md)|
 |[Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)|[9_hw_int](./9_hw_int/README.md)|[9_hw_int_challenge](./9_hw_int_challenge/README.md)|
-|[Introduction to RTOS Part 10 - Deadlock and Starvation](https://www.youtube.com/watch?v=hRsWi4HIENc&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=10)|[10_deadlock_starvation](./10_deadlock_starvation/README.md)||
+|[Introduction to RTOS Part 10 - Deadlock and Starvation](https://www.youtube.com/watch?v=hRsWi4HIENc&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=10)|[10_deadlock_starvation](./10_deadlock_starvation/README.md)|[10_deadlock_starvation_challenge](./10_deadlock_starvation_challenge/README.md)|
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.
 
