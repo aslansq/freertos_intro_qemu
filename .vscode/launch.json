@@ -173,12 +173,23 @@
             "name": "Launch_QEMU_10_deadlock_starvation",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/9_hw_int/build/demo",
+            "program": "${workspaceFolder}/10_deadlock_starvation/build/demo",
             "cwd": "${workspaceFolder}",
             "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
             "miDebuggerServerAddress": "localhost:1234",
             "stopAtEntry": true,
             "preLaunchTask": "RunQemu_10_deadlock_starvation"
+        },
+        {
+            "name": "Launch_QEMU_10_deadlock_starvation_challenge",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/10_deadlock_starvation_challenge/build/demo",
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "${env:GCC_ARM_NONE_EABI_BIN_PATH}/arm-none-eabi-gdb-py",
+            "miDebuggerServerAddress": "localhost:1234",
+            "stopAtEntry": true,
+            "preLaunchTask": "RunQemu_10_deadlock_starvation_challenge"
         },
     ]
 }
