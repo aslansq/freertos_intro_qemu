@@ -16,6 +16,7 @@ This repo implements concepts from Digi-Key FreeRTOS introduction.
 |[Introduction to RTOS Part 8 - Software Timer](https://www.youtube.com/watch?v=b1f1Iex0Tso&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=8)|[8_sw_timers](./8_sw_timers/README.md)|[8_sw_timers_challenge](./8_sw_timers_challenge/README.md)|
 |[Introduction to RTOS Part 9 - Hardware Interrupts](https://www.youtube.com/watch?v=qsflCf6ahXU&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=9)|[9_hw_int](./9_hw_int/README.md)|[9_hw_int_challenge](./9_hw_int_challenge/README.md)|
 |[Introduction to RTOS Part 10 - Deadlock and Starvation](https://www.youtube.com/watch?v=hRsWi4HIENc&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=10)|[10_deadlock_starvation](./10_deadlock_starvation/README.md)|[10_deadlock_starvation_challenge](./10_deadlock_starvation_challenge/README.md)|
+|[Introduction to RTOS Part 11 - Priority Inversion](https://www.youtube.com/watch?v=C2xKhxROmhA&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=11)|||
 ## Usecase
 You dont have hardware and you dont care about any specific hardware but learning FreeRTOS.
 

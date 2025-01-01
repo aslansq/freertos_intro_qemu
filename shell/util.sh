@@ -17,7 +17,8 @@ demos="\
 9_hw_int \
 9_hw_int_challenge \
 10_deadlock_starvation \
-10_deadlock_starvation_challenge"
+10_deadlock_starvation_challenge \
+11_priority_inversion"
 
 getMacros()
 {

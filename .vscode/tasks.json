@@ -393,6 +393,29 @@
                 }
               }
             ]
+          },
+          {
+            "label": "RunQemu_11_priority_inversion",
+            "type": "shell",
+            "command": "${workspaceFolder}/shell/rebuild_run_qemu.sh ${workspaceFolder}/11_priority_inversion debug",
+            "isBackground": true,
+            "problemMatcher": [
+              {
+                "pattern": [
+                  {
+                    "regexp": ".",
+                    "file": 1,
+                    "location": 2,
+                    "message": 3
+                  }
+                ],
+                "background": {
+                  "activeOnStart": true,
+                  "beginsPattern": ".",
+                  "endsPattern": "QEMU_started",
+                }
+              }
+            ]
           }
     ]
 }
