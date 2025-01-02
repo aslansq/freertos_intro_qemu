@@ -1,14 +1,14 @@
 #include "demo_hw.h"
-#include "mps2_an385_uart.h"
+#include "CMSDK_CM3.h"
 
 //! is there a char to be read in uart0 rx buf
-#define UART0_RX_AVAIL() ((UART0_STATE & UART_STATE_RX_BF) != 0)
+#define UART0_RX_AVAIL() ((CMSDK_UART0->STATE & CMSDK_UART_STATE_RXBF_Msk) != 0)
 //! wait until there is something to read in uart0 rx
-#define UART0_RX_WAIT()  while ((UART0_STATE & UART_STATE_RX_BF) == 0)
+#define UART0_RX_WAIT()  while ((CMSDK_UART0->STATE & CMSDK_UART_STATE_RXBF_Msk) == 0)
 // wait until it is available to put a char to uart1 tx buffer
-#define UART0_TX_WAIT() while( ( UART0_STATE & UART_STATE_TX_BF ) != 0 )
+#define UART0_TX_WAIT() while( ( CMSDK_UART0->STATE & CMSDK_UART_STATE_TXBF_Msk ) != 0 )
 // wait until it is available to put a char to uart1 tx buffer
-#define UART1_TX_WAIT() while( ( UART1_STATE & UART_STATE_TX_BF ) != 0 )
+#define UART1_TX_WAIT() while( ( CMSDK_UART1->STATE & CMSDK_UART_STATE_TXBF_Msk ) != 0 )
 
 static void _uart1_update(void);
 
@@ -29,10 +29,10 @@ void demo_hw_term_printf(const char *format, ...) {
 void demo_hw_term_writeChar(char c) {
     c = (c == '\r') ? '\n' : c;
     UART0_TX_WAIT();
-    UART0_DATA = c;
+    CMSDK_UART0->DATA = c;
     if(c == '\n') {
         UART0_TX_WAIT();
-        UART0_DATA = '\r';
+        CMSDK_UART0->DATA = '\r';
     }
 }
 
@@ -54,7 +54,7 @@ uint8_t demo_hw_term_readCharNonBlock(char *c) {
     uint8_t read = 0;
     if(UART0_RX_AVAIL()) {
         read = 1;
-        *c = (char)UART0_DATA;
+        *c = (char)CMSDK_UART0->DATA;
     }
     return read;
 }
@@ -75,7 +75,7 @@ void demo_hw_term_read(char *buf, uint8_t len) {
     uint8_t idx;
     for(idx = 0; idx < len; ++idx) {
         UART0_RX_WAIT();
-        buf[idx] = (char)UART0_DATA;
+        buf[idx] = (char)CMSDK_UART0->DATA;
     }
 }
 
@@ -86,7 +86,7 @@ int16_t demo_hw_term_readLine(char *buf, uint8_t len) {
 
     for(idx = 0; idx < len; idx++) {
         UART0_RX_WAIT();
-        c = (char)UART0_DATA;
+        c = (char)CMSDK_UART0->DATA;
         if(idx == (len-1) && c != '\r') {
             ret = -1;
             break;
@@ -131,10 +131,10 @@ uint8_t demo_hw_adc_read(void) {
 
 // PROTECTED :)
 void demo_hw_init(void) {
-    UART0_BAUDDIV = 16;
-    UART0_CTRL = ( UART0_CTRL_TX_EN | UART0_CTRL_RX_EN );
-    UART1_BAUDDIV = 16;
-    UART1_CTRL = UART0_CTRL_TX_EN;
+    CMSDK_UART0->BAUDDIV = 16;
+    CMSDK_UART0->CTRL = ( CMSDK_UART_CTRL_TXEN_Msk | CMSDK_UART_CTRL_RXEN_Msk );
+    CMSDK_UART1->BAUDDIV = 16;
+    CMSDK_UART1->CTRL = CMSDK_UART_CTRL_TXEN_Msk;
     _uart1_update();
 }
 
@@ -160,7 +160,7 @@ adc : 000\n\r\
     uint8_t idx = 0;
     while(uart1_buf[idx] != '\0') {
         UART1_TX_WAIT();
-        UART1_DATA = uart1_buf[idx];
+        CMSDK_UART1->DATA = uart1_buf[idx];
         idx++;
     }
 }
