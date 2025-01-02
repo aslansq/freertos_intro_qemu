@@ -41,13 +41,8 @@ void demo_init(void) {
     _xQueue1 = xQueueCreate( 10, sizeof( delay_t ) );
     _xQueue2 = xQueueCreate( MSG_BUF_SIZE, sizeof( char ) );
 
-    if(_xQueue1 == NULL) {
-        demo_hw_term_writeLine("_xQueue1 null");
-    }
-
-    if(_xQueue2 == NULL) {
-        demo_hw_term_writeLine("_xQueue2 null");
-    }
+    configASSERT(!( _xQueue1 == NULL));
+    configASSERT(!( _xQueue2 == NULL));
 
     /* Start the tasks and timer running. */
     vTaskStartScheduler();

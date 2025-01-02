@@ -48,11 +48,7 @@ void demo_init(void) {
 }
 
 static void _userInTask(void * pvParameters) {
-    if(_backlightTm == NULL) {
-        demo_hw_term_writeLine("err back null");
-        while(1)
-            ;
-    }
+    configASSERT(!(_backlightTm == NULL));
     (void)pvParameters;
     char c;
     int ret;
@@ -67,11 +63,7 @@ static void _userInTask(void * pvParameters) {
 }
 
 void _backlightTmCbk(TimerHandle_t xTimer) {
-    if(xTimer == NULL) {
-        demo_hw_term_writeLine("err tm cbk");
-        while(1)
-            ;
-    }
+    configASSERT(!(xTimer == NULL));
     char *cPtr = (char *)pvTimerGetTimerID(xTimer);
     if((*cPtr) == _backlightTmChar) {
         demo_hw_led_set(0);

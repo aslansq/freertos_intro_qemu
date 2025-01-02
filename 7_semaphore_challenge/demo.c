@@ -69,12 +69,8 @@ void demo_init(void) {
 }
 
 void _consumerTask(void *pvParameters) {
-    // null pointer checks
-    if(_ringBuf_mutex == NULL ||
-       _ringBuf_semphr == NULL) {
-        while(1)
-            ;
-    }
+    configASSERT(!(_ringBuf_mutex == NULL));
+    configASSERT(!(_ringBuf_semphr == NULL));
     char c;
 
     for( ; ; ) {
@@ -92,13 +88,9 @@ void _consumerTask(void *pvParameters) {
 }
 
 void _producerTask(void *pvParameters) {
-    // null pointer checks
-    if(pvParameters == NULL ||
-       _ringBuf_mutex == NULL ||
-       _ringBuf_semphr == NULL) {
-        while(1)
-            ;
-    }
+    configASSERT(!(_ringBuf_mutex == NULL));
+    configASSERT(!(_ringBuf_semphr == NULL));
+    configASSERT(!(pvParameters == NULL));
 
     producerHandle_T *producerHandlePtr = ((producerHandle_T *)pvParameters);
 

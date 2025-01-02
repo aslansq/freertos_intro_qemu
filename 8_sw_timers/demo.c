@@ -28,12 +28,8 @@ void demo_init(void) {
                              (void *)&_autoReTmChar, // pvTimerID
                              _timerCallback);        // pxCallbackFunction
 
-    if(oneShotTm == NULL ||
-       autoReTm == NULL) {
-        printf("err timer\n");
-        while(1)
-            ;
-    }
+    configASSERT(!(oneShotTm == NULL));
+    configASSERT(!(autoReTm == NULL));
 
     xTimerStart(oneShotTm, portMAX_DELAY);
     xTimerStart(autoReTm, portMAX_DELAY);

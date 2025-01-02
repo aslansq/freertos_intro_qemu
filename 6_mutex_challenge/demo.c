@@ -61,19 +61,14 @@ void _setup(void * pvParameters) {
                 NULL );                     /* The task handle is not required, so NULL is passed. */
 
     // wait until you take
-    while(xSemaphoreTake(_binSemphr, 5) != pdTRUE)
-        ;
+    xSemaphoreTake(_binSemphr, portMAX_DELAY);
     demo_hw_term_writeLine("_setup done");
     vTaskDelete(NULL);
 }
 
 static void _blinkLED( void * pvParameters ) {
-    if(_binSemphr == NULL ||
-       pvParameters == NULL) {
-        demo_hw_term_writeLine("null checks fail");
-        while(1)
-            ;
-    }
+    configASSERT(!( _binSemphr == NULL));
+    configASSERT(!( pvParameters == NULL));
     uint32_t delay = 100;
     delay = *((uint32_t *) pvParameters);
     xSemaphoreGive(_binSemphr);
