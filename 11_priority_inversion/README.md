@@ -6,32 +6,43 @@
   
 
 ## Terminal Output
-<mark>(H) lock acquired. Wait time: 5099</mark>
+
+<mark>DEMO_UNBOUNDED_C</mark>  
+<mark>(H) lock acquired. Wait time: 5001</mark>
 ```
 (L) trying to acquire lock.
 
+(L) lock acquired. Wait time: 0
 (H) trying to acquire lock.
 
-(L) lock acquired. Wait time: 0
 (M) worky work.
 
 (M) sleppy.
 
 (L) lock released.
 
-(H) lock acquired. Wait time: 5099
+(H) lock acquired. Wait time: 5001
+(H) lock released.
+
+(H) sleepy.
+```
+
+<mark>DEMO_INHERITANCE_C: It is still priority inversion but bounded.</mark>  
+<mark>(H) lock acquired. Wait time: 241</mark>
+```
+(L) trying to acquire lock.
+
+(L) lock acquired. Wait time: 1
+(H) trying to acquire lock.
+
+(L) lock released.
+
+(H) lock acquired. Wait time: 241
 (H) lock released.
 
 (H) sleepy.
 
 (M) worky work.
-
-(H) trying to acquire lock.
-
-(H) lock acquired. Wait time: 0
-(H) lock released.
-
-(H) sleepy.
 ```
 ## Notes
 Use demo_init function in demo.c to implement your demo application.
