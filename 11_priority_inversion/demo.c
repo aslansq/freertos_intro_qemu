@@ -5,10 +5,12 @@
 // demo hardware
 #include "demo_hw.h"
 
-#define DEFAULT_TASK_L_PRIO     (tskIDLE_PRIORITY + 1)
-#define DEFAULT_TASK_M_PRIO     (tskIDLE_PRIORITY + 2)
-#define DEFAULT_TASK_H_PRIO     (tskIDLE_PRIORITY + 3)
+#define TASK_L_PRIO     (tskIDLE_PRIORITY + 1)
+#define TASK_M_PRIO     (tskIDLE_PRIORITY + 2)
+#define TASK_H_PRIO     (tskIDLE_PRIORITY + 3)
+#define TASK_SETUP_PRIO (tskIDLE_PRIORITY + 4)
 #define DEFAULT_TASK_STACK_SIZE (1024u)
+
 
 // all ms
 #define TASK_L_WORK_TIME         ( 250u  )
@@ -18,6 +20,7 @@
 
 #define TICK_TO_MS(tick) ((tick) * portTICK_PERIOD_MS)
 
+static void _setup(void *pvParameters);
 static void _taskL(void *pvParameters);
 static void _taskM(void *pvParameters);
 static void _taskH(void *pvParameters);
@@ -25,6 +28,22 @@ static void _taskH(void *pvParameters);
 static SemaphoreHandle_t _mutex;
 
 void demo_init(void) {
+    xTaskCreate(
+        _setup,
+        "S",
+        DEFAULT_TASK_STACK_SIZE,
+        NULL,
+        TASK_SETUP_PRIO,
+        NULL
+    );
+    vTaskStartScheduler();
+
+    for( ; ; ) {
+    }
+}
+
+static void _setup(void *pvParameters) {
+    (void)pvParameters;
     _mutex = xSemaphoreCreateBinary();
     xSemaphoreGive(_mutex);
 
@@ -33,16 +52,18 @@ void demo_init(void) {
         "L",
         DEFAULT_TASK_STACK_SIZE,
         NULL,
-        DEFAULT_TASK_L_PRIO,
+        TASK_L_PRIO,
         NULL
     );
+
+    vTaskDelay( pdMS_TO_TICKS( 10 ) );
 
     xTaskCreate(
         _taskM,
         "M",
         DEFAULT_TASK_STACK_SIZE,
         NULL,
-        DEFAULT_TASK_M_PRIO,
+        TASK_M_PRIO,
         NULL
     );
 
@@ -51,14 +72,10 @@ void demo_init(void) {
         "H",
         DEFAULT_TASK_STACK_SIZE,
         NULL,
-        DEFAULT_TASK_H_PRIO,
+        TASK_H_PRIO,
         NULL
     );
-
-    vTaskStartScheduler();
-
-    for( ; ; ) {
-    }
+    vTaskDelete(NULL);
 }
 
 static void _taskL(void *pvParameters) {
@@ -82,11 +99,6 @@ static void _taskL(void *pvParameters) {
 }
 
 static void _taskM(void *pvParameters) {
-    static uint8_t firsEntry = 0;
-    if(firsEntry == 0) {
-        firsEntry = 1;
-        vTaskDelay( pdMS_TO_TICKS( 100 ) );
-    }
     (void)pvParameters;
     TickType_t timestamp;
     for( ; ; ) {
@@ -101,11 +113,6 @@ static void _taskM(void *pvParameters) {
 }
 
 static void _taskH(void *pvParameters) {
-    static uint8_t firsEntry = 0;
-    if(firsEntry == 0) {
-        firsEntry = 100;
-        vTaskDelay( pdMS_TO_TICKS( 1 ) );
-    }
     (void)pvParameters;
     TickType_t timestamp;
     for( ; ; ) {
