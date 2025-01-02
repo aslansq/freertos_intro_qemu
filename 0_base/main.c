@@ -53,8 +53,8 @@
 /* Standard includes. */
 #include <stdio.h>
 #include <string.h>
-#include "mps2_an385_uart.h"
 #include "demo_hw.h"
+#include "CMSDK_CM3.h"
 
 extern void demo_init(void);
 extern void demo_hw_init(void);
@@ -247,11 +247,11 @@ int __write( int iFile,
     /* Output the formatted string to the UART. */
     for( iNextChar = 0; iNextChar < iStringLength; iNextChar++ )
     {
-        while( ( UART0_STATE & UART_STATE_TX_BF ) != 0 )
+        while( ( CMSDK_UART0->STATE & CMSDK_UART_STATE_TXBF_Msk ) != 0 )
         {
         }
 
-        UART0_DATA = *pcString;
+        CMSDK_UART0->DATA = *pcString;
         pcString++;
     }
 
