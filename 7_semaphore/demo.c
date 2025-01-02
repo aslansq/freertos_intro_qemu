@@ -50,8 +50,7 @@ void _setup(void * pvParameters) {
     }
 
     for(i = 0; i < NUM_OF_PRINT_MSG_TASK; ++i) {
-        while(xSemaphoreTake(_semphr, 5) != pdTRUE)
-            ;
+        xSemaphoreTake(_semphr, portMAX_DELAY);
     }
 
     demo_hw_term_writeLine("_setup done");
@@ -59,12 +58,8 @@ void _setup(void * pvParameters) {
 }
 
 static void _printMsg( void * pvParameters ) {
-    if(_semphr == NULL ||
-       pvParameters == NULL) {
-        demo_hw_term_writeLine("null checks fail");
-        while(1)
-            ;
-    }
+    configASSERT(!(_semphr == NULL));
+    configASSERT(!(pvParameters == NULL));
     char msg[100];
     strcpy(msg, (char *)pvParameters);
     demo_hw_term_printf("%s", msg);
