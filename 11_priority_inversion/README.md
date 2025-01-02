@@ -1,6 +1,9 @@
-# 11_priority_inversion (unbounded)
+# 11_priority_inversion
 ```
-../shell/rebuild_run_qemu.sh .
+../shell/rebuild_run_qemu.sh . -DDEMO_UNBOUNDED_C:BOOL=ON
+```  
+```
+../shell/rebuild_run_qemu.sh . -DDEMO_INHERITANCE_C:BOOL=ON
 ```  
 [Introduction to RTOS Part 11 - Priority Inversion](https://www.youtube.com/watch?v=C2xKhxROmhA&list=PLEBQazB0HUyQ4hAPU1cJED6t3DU0h34bz&index=11)  
   

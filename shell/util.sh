@@ -18,7 +18,8 @@ demos="\
 9_hw_int_challenge \
 10_deadlock_starvation \
 10_deadlock_starvation_challenge \
-11_priority_inversion"
+11_priority_inversion \
+11_priority_inversion_challenge"
 
 getMacros()
 {
@@ -49,6 +50,11 @@ getMacros()
     -DDEMO_STICK_PRIO_C:BOOL=ON\
     "
 
+    demo_11_priority_inversion_macros="\
+    -DDEMO_UNBOUNDED_C:BOOL=ON\
+    -DDEMO_INHERITANCE_C:BOOL=ON\
+    "
+
     demo="$1"
     if [ "${demo}" == "4_memory" ]
     then
@@ -62,6 +68,9 @@ getMacros()
     elif [ "${demo}" == "10_deadlock_starvation" ]
     then
         echo "${demo_10_deadlock_starvation_macros}"
+    elif [ "${demo}" == "11_priority_inversion" ]
+    then
+        echo "${demo_11_priority_inversion_macros}"
     fi
 }
 
